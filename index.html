@@ -1376,10 +1376,10 @@ td,dd,li,.callout,.note,.mini{letter-spacing:-.003em}
     svg.querySelectorAll('.bar-seg').forEach(el=>{ el.addEventListener('mousemove',e=>{tip.textContent=el.dataset.d; tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY+12)+'px'; tip.style.opacity=1;}); el.addEventListener('mouseleave',()=>tip.style.opacity=0); });
   }
   // theme
-  const KEY='g2g-coop-theme'; const root=document.documentElement;
+  const KEY='g2g-coop-redesign-theme'; const root=document.documentElement;
   function applyTheme(t){ root.setAttribute('data-theme',t); document.getElementById('iconMoon').style.display=t==='dark'?'none':''; document.getElementById('iconSun').style.display=t==='dark'?'':'none'; try{localStorage.setItem(KEY,t)}catch(e){} drawChart(); }
   let saved=null; try{saved=localStorage.getItem(KEY)}catch(e){}
-  applyTheme(saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  applyTheme(saved==='dark'?'dark':'light');
   document.getElementById('themeBtn').onclick=()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
   drawChart(); renderDaily();
   tidy(document.querySelector('.content'));

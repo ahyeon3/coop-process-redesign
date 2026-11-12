@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:title" content="협력마케팅팀 운영 프로세스 재설계">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahyeon3.github.io/coop-process-redesign/">
+<meta name="twitter:card" content="summary">
+<title>협력마케팅팀 운영 프로세스 재설계</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --indigo:#2F4E7E; --indigo-deep:#233C63; --indigo-2:#5A6F94; --indigo-3:#4A78A8; --c-lead:#1F3559; --c-am:#3C8A86; --c-day:#5B7DB8; --c-pm:#8A6FA8; --indigo-tint:#EDF1F6;
+  --text:#1F2735; --text-2:#454E60; --muted:#6C7586; --muted-2:#939AA8; --line:#E7E9EE; --line-2:#D3D7DF;
+  --bg:#F4F5F7; --panel:#F6F7F9; --card:#FFFFFF; --card-2:#FAFAFB; --row-hover:#F2F5F9;
+  --pink:#A9505B; --green:#3E7A5A; --yellow:#9A6A26; --blue:#3C6A9C; --purple:#665A92;
+  --pink-bg:#F6EDED; --green-bg:#EBF2ED; --yellow-bg:#F6F0E6; --blue-bg:#EBF0F6; --purple-bg:#EFEEF5;
+  --pink-dot:#BF7B83; --yellow-dot:#C29A62; --green-dot:#6E9C82; --purple-dot:#8E86B3; --blue-dot:#6F92B8;
+  --sh16:0 1px 2px rgba(31,39,53,.04),0 4px 16px rgba(31,39,53,.04);
+  --sh4:0 1px 3px rgba(31,39,53,.05);
+  --r:18px; --r-s:14px;
+  --fs-xs:12.5px; --fs-s:13.5px; --fs-b:15px; --fs-m:16px; --fs-l:19px; --fs-xl:22px;
+  --font:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
+}
+html[data-theme="dark"]{
+  --indigo:#8FA8CC; --indigo-deep:#6F8BB5; --indigo-2:#A3AEC6; --indigo-3:#89A9CC; --c-lead:#C9D3E3; --c-am:#6FBDB8; --c-day:#8FAADB; --c-pm:#B79FD3; --indigo-tint:#222C3D;
+  --text:#E6E9EF; --text-2:#C3C8D2; --muted:#959CAA; --muted-2:#727A89; --line:#2A3241; --line-2:#3A4354;
+  --bg:#141922; --panel:#1A202B; --card:#1C2330; --card-2:#222A38; --row-hover:#232C3B;
+  --pink:#D59AA1; --green:#8FC0A2; --yellow:#D6B47F; --blue:#94B4D6; --purple:#B0A8D0;
+  --pink-bg:#33272B; --green-bg:#22302A; --yellow-bg:#332D22; --blue-bg:#222D3B; --purple-bg:#2A2838;
+  --sh16:0 4px 20px rgba(0,0,0,.3);
+  --sh4:0 1px 3px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-padding-top:96px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:var(--fs-b);line-height:1.7;letter-spacing:-.012em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+b,strong{font-weight:650;color:var(--text)}
+a{color:var(--indigo);text-decoration:none;font-weight:600;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom-color:currentColor}
+button{font-family:inherit;letter-spacing:inherit}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:8px}
+::selection{background:var(--indigo-tint);color:var(--text)}
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+
+/* sidebar */
+.side{background:var(--card);border-right:1px solid var(--line);padding:28px 18px 22px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px;margin-bottom:28px}
+.brand .mark{width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line-2);color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:.02em;flex:none;box-shadow:0 6px 16px rgba(47,78,126,.18)}
+.brand .name{font-size:18px;font-weight:700;color:var(--text);line-height:1.25;letter-spacing:-.03em}
+.brand .team{font-size:12.5px;color:var(--muted);margin-top:1px}
+.menu{display:flex;flex-direction:column;gap:4px}
+.menu button{display:flex;align-items:center;gap:12px;width:100%;height:46px;padding:0 14px;border-radius:12px;border:0;background:transparent;color:var(--muted);font-size:15px;font-weight:500;cursor:pointer;text-align:left;transition:background .15s,color .15s;white-space:nowrap}
+.menu button svg{width:20px;height:20px;flex:none;opacity:.85}
+.menu button:hover{background:var(--indigo-tint);color:var(--indigo)}
+.menu button.on{background:var(--indigo);color:#fff;font-weight:650;box-shadow:0 8px 20px rgba(47,78,126,.16)}
+.menu button.on svg{opacity:1}
+.promo{margin-top:auto;background:var(--indigo);border-radius:18px;padding:22px 20px 20px;color:#fff;position:relative;overflow:hidden}
+.promo::before,.promo::after{content:"";position:absolute;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));pointer-events:none}
+.promo::before{width:220px;height:220px;right:-90px;top:-110px}
+.promo::after{width:260px;height:260px;left:-120px;bottom:-170px;background:linear-gradient(0deg,rgba(255,255,255,.16),rgba(255,255,255,0))}
+.promo .pn{width:38px;height:38px;border-radius:12px;background:#fff;color:var(--indigo);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin-bottom:12px;position:relative}
+.promo .pt{font-weight:700;font-size:15.5px;line-height:1.4;position:relative;letter-spacing:-.02em}
+.promo .pd{font-size:13px;opacity:.92;margin:8px 0 16px;line-height:1.6;position:relative}
+.promo button{border:0;background:#fff;color:var(--indigo);font-weight:650;font-size:13.5px;padding:10px 16px;border-radius:10px;cursor:pointer;position:relative;transition:transform .15s}
+.promo button:hover{transform:translateY(-1px)}
+html[data-theme="dark"] .promo{background:#2A3A55}
+
+/* main */
+.main{min-width:0}
+.topbar{height:76px;display:flex;align-items:center;gap:20px;padding:0 40px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);position:sticky;top:0;z-index:10}
+.ptitle{font-size:24px;font-weight:700;color:var(--text);margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.035em;line-height:1.3}
+.top-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+.date{font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;padding:8px 12px;border-radius:10px;background:var(--panel)}
+.theme{width:42px;height:42px;border-radius:12px;border:0;background:var(--yellow-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--yellow);transition:transform .15s}
+.theme:hover{transform:translateY(-1px)}
+.theme svg{width:19px;height:19px}
+.user{display:flex;align-items:center;gap:14px}
+.avatar{width:42px;height:42px;border-radius:12px;background:var(--indigo-tint);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13.5px}
+.user .un{font-size:15px;font-weight:500;color:var(--text);line-height:1.3}
+.user .ur{font-size:13px;color:var(--muted)}
+.content{padding:36px 40px 72px;max-width:1520px;margin:0 auto}
+.view{display:none}
+.view.on{display:block;animation:fadeIn .2s ease}
+section.view{margin-top:0}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.hero{margin:0}
+.hero h1{display:none}
+
+/* type scale */
+h1{font-size:28px;line-height:1.35;margin:0;font-weight:700;letter-spacing:-.035em}
+.sub{color:var(--muted);font-size:var(--fs-b);margin-top:4px;max-width:1100px}
+h2{font-size:var(--fs-xl);line-height:1.4;margin:0 0 16px;font-weight:700;color:var(--text);letter-spacing:-.035em}
+.card h2{font-size:var(--fs-l);margin-bottom:16px}
+h3{font-size:var(--fs-m);line-height:1.45;margin:0 0 10px;font-weight:700;color:var(--text);letter-spacing:-.025em}
+.label{font-size:var(--fs-s);color:var(--muted);font-weight:500}
+p{margin:0}
+
+/* layout */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.card{background:var(--card);border-radius:var(--r);padding:28px 30px;box-shadow:var(--sh16);border:1px solid var(--line);min-width:0}
+.card.flat{box-shadow:var(--sh16)}
+.card.tint{background:var(--indigo-tint);box-shadow:none;border-color:transparent}
+.card + .card, .grid + .card, .card + .grid, .grid + .grid, .grid + h2, .card + h2{margin-top:20px}
+section + section{margin-top:52px}
+.view > .card + section, .view > .grid + section{margin-top:52px}
+.card > h3 + ul, .card > h3 + ol{margin-top:4px}
+.chead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:22px}
+.chead .ct{font-size:var(--fs-l);font-weight:700;margin:0;color:var(--text);letter-spacing:-.035em}
+.chead .cs{font-size:var(--fs-s);color:var(--muted);margin-top:4px;line-height:1.6}
+
+/* pastel stat tiles */
+.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.tile{border-radius:16px;padding:22px 20px 22px;display:flex;flex-direction:column}
+.tile .tico{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:18px}
+.tile .tico svg{width:19px;height:19px}
+.tile .v{font-size:clamp(19px,1.55vw,24px);white-space:nowrap;font-weight:750;color:var(--text);line-height:1.25;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.tile .k{font-size:14.5px;font-weight:600;color:var(--text-2);margin-top:6px}
+.tile .d{font-size:13.5px;font-weight:400;color:var(--text-2);margin-top:12px;padding-top:12px;border-top:1px solid color-mix(in srgb,var(--text) 8%,transparent);line-height:1.65}
+.tile.pink{background:var(--pink-bg)}.tile.pink .tico{background:var(--pink-dot)}
+.tile.orange{background:var(--yellow-bg)}.tile.orange .tico{background:var(--yellow-dot)}
+.tile.green{background:var(--green-bg)}.tile.green .tico{background:var(--green-dot)}
+.tile.purple{background:var(--purple-bg)}.tile.purple .tico{background:var(--purple-dot)}
+.tile.blue{background:var(--blue-bg)}.tile.blue .tico{background:var(--blue-dot)}
+.stat{padding:22px 22px 22px;border-radius:16px;box-shadow:none;border:0;display:flex;flex-direction:column}
+.stat>.row{flex-direction:row;align-items:flex-start;gap:14px}
+.stat .row>div:last-child{display:flex;flex-direction:column;min-width:0}
+.stat .v{font-size:26px;font-weight:750;line-height:1.25;margin:0;color:var(--text);order:1;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.stat .k{font-size:14.5px;font-weight:600;color:var(--text-2);margin-top:4px;order:2}
+.stat .d{font-size:13.5px;color:var(--text-2);margin-top:10px;line-height:1.65;order:3}
+.stat .ico{width:38px;height:38px;border-radius:50%;color:#fff}
+.stat .ico svg{width:19px;height:19px}
+.grid .stat:nth-child(4n+1){background:var(--pink-bg)}.grid .stat:nth-child(4n+1) .ico{background:var(--pink-dot);color:#fff}
+.grid .stat:nth-child(4n+2){background:var(--yellow-bg)}.grid .stat:nth-child(4n+2) .ico{background:var(--yellow-dot);color:#fff}
+.grid .stat:nth-child(4n+3){background:var(--green-bg)}.grid .stat:nth-child(4n+3) .ico{background:var(--green-dot);color:#fff}
+.grid .stat:nth-child(4n+4){background:var(--purple-bg)}.grid .stat:nth-child(4n+4) .ico{background:var(--purple-dot);color:#fff}
+.ico{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.ico svg{width:21px;height:21px}
+.ico.indigo{background:var(--indigo-tint);color:var(--indigo)}
+.ico.pink{background:var(--pink-bg);color:var(--pink)}
+.ico.green{background:var(--green-bg);color:var(--green)}
+.ico.yellow{background:var(--yellow-bg);color:var(--yellow)}
+.ico.blue{background:var(--blue-bg);color:var(--blue)}
+.row{display:flex;gap:16px;align-items:flex-start}
+.row > div:last-child{min-width:0}
+.row h3{margin-top:9px;margin-bottom:8px}
+
+/* tables */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.card.tablewrap{padding:10px 14px 14px}
+.card.tablewrap > .note, .card.tablewrap > .seg{margin-left:14px;margin-right:14px}
+.card.tablewrap > .seg{margin-top:14px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;line-height:1.65}
+th{text-align:left;font-weight:600;color:var(--muted);font-size:13px;letter-spacing:-.005em;padding:14px 16px 12px;border-bottom:1px solid var(--line-2);white-space:nowrap;background:transparent;vertical-align:bottom}
+td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-2);min-width:96px}
+td:first-child,th:first-child{padding-left:16px}
+tbody tr{transition:background .12s}
+tbody tr:hover td{background:var(--row-hover)}
+td.k{color:var(--text)}
+tr:last-child td{border-bottom:0}
+td.k, th.k{white-space:nowrap;font-weight:650}
+td:has(> .ratio){min-width:180px}
+td .pill{margin:0 6px 4px 0;vertical-align:1px}
+td .mini{display:block;margin-top:2px;font-weight:400}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:650;white-space:nowrap;line-height:1.6;letter-spacing:-.01em}
+.pill.indigo{background:var(--indigo-tint);color:var(--indigo)}
+.pill.pink{background:var(--pink-bg);color:var(--pink)}
+.pill.green{background:var(--green-bg);color:var(--green)}
+.pill.yellow{background:var(--yellow-bg);color:var(--yellow)}
+.pill.blue{background:var(--blue-bg);color:var(--blue)}
+.pill.gray{background:var(--panel);color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+html[data-theme="dark"] .pill.gray{background:var(--card-2)}
+
+/* lists */
+ul,ol{margin:8px 0 0;padding-left:20px}
+li{margin:7px 0;padding-left:2px}
+li::marker{color:var(--indigo)}
+ul li::marker{font-size:.9em}
+.card ul{color:var(--text-2)}
+.callout ul{margin-top:10px}
+
+/* callouts & text blocks */
+.callout{border-radius:var(--r-s);padding:16px 20px;background:var(--panel);border:1px solid var(--line);font-size:14.5px;line-height:1.7;color:var(--text-2)}
+.callout.indigo{background:var(--indigo-tint);border-color:transparent;box-shadow:inset 3px 0 0 var(--indigo)}
+.callout.pink{background:var(--pink-bg);border-color:transparent;box-shadow:inset 3px 0 0 var(--pink)}
+.callout.green{background:var(--green-bg);border-color:transparent;box-shadow:inset 3px 0 0 var(--green)}
+.callout.yellow{background:var(--yellow-bg);border-color:transparent;box-shadow:inset 3px 0 0 var(--yellow)}
+.callout b{font-weight:700;color:var(--text)}
+.quote{font-size:18px;line-height:1.75;font-weight:600;color:var(--text);border-left:3px solid var(--indigo);padding:2px 0 2px 20px;margin:0;letter-spacing:-.03em}
+.mini{font-size:14px;color:var(--muted);line-height:1.7}
+p.mini{color:var(--text-2)}
+.card.flat p.mini, .row p.mini{color:var(--muted)}
+.note{font-size:13.5px;color:var(--muted);margin-top:18px;line-height:1.75;padding-top:14px;border-top:1px dashed var(--line-2)}
+.red{color:var(--pink);font-weight:650}
+.hl{background:var(--yellow-bg);padding:0 4px;border-radius:4px}
+
+/* numbered steps */
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);margin:0;align-items:flex-start}
+.steps li:first-child{padding-top:4px}
+.steps li:last-child{border-bottom:0;padding-bottom:4px}
+.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:8px;background:var(--indigo-tint);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;margin-top:1px}
+.steps .t{font-weight:650;color:var(--text);line-height:1.6;font-size:14.5px}
+.steps .s{color:var(--muted);font-size:13.5px;line-height:1.65;margin-top:3px}
+
+/* key-value */
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:0 18px;font-size:14px;margin:0}
+.kv dt{color:var(--muted);font-weight:600;padding:11px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+.kv dd{margin:0;padding:11px 0;border-bottom:1px solid var(--line);color:var(--text-2);line-height:1.65}
+.kv dt:last-of-type,.kv dd:last-of-type{border-bottom:0}
+.kv dt:first-of-type,.kv dd:first-of-type{padding-top:2px}
+
+/* timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl{position:relative;padding:0 0 20px}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:"";position:absolute;left:-25px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--indigo);border:3px solid var(--card);box-shadow:0 0 0 1px var(--line-2)}
+.tl.pink::before{background:var(--pink)}
+.tl.green::before{background:var(--green)}
+.tl.yellow::before{background:var(--yellow)}
+.tl .when{font-size:12.5px;color:var(--indigo);font-weight:650;letter-spacing:-.005em}
+.tl.pink .when{color:var(--pink)}.tl.green .when{color:var(--green)}.tl.yellow .when{color:var(--yellow)}
+.tl .what{font-weight:700;margin:3px 0 4px;color:var(--text);font-size:15px}
+.tl .how{font-size:13.5px;color:var(--muted);line-height:1.65}
+.bar{height:6px;border-radius:8px;background:var(--indigo-tint);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--indigo);border-radius:8px;transition:.3s}
+
+/* before / after */
+.vs{display:grid;grid-template-columns:1fr 40px 1.15fr;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.65}
+.vs:first-child{padding-top:2px}
+.vs:last-child{border-bottom:0;padding-bottom:2px}
+.vs .b{color:var(--muted)}
+.vs .a{font-weight:500;color:var(--text)}
+.vs .ar{color:var(--indigo);text-align:center;font-size:16px;font-weight:700;width:30px;height:30px;line-height:30px;border-radius:50%;background:var(--indigo-tint);justify-self:center}
+.vs .lbl{font-size:12.5px;color:var(--muted-2);font-weight:650;margin-bottom:3px;display:block}
+.vs > div:last-child .lbl{color:var(--indigo)}
+
+/* list rows */
+.lrow{display:flex;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.lrow:last-child{border-bottom:0;padding-bottom:0}
+.chead + .lrow{padding-top:0}
+.lrow .sq{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13.5px;flex:none}
+.lrow .sq.pink{background:var(--pink-bg);color:var(--pink)}
+.lrow .sq.orange{background:var(--yellow-bg);color:var(--yellow)}
+.lrow .sq.green{background:var(--green-bg);color:var(--green)}
+.lrow .sq.purple{background:var(--purple-bg);color:var(--purple)}
+.lrow .sq.blue{background:var(--blue-bg);color:var(--blue)}
+.lrow .sq.gray{background:var(--panel);color:var(--muted)}
+html[data-theme="dark"] .lrow .sq.gray{background:var(--card-2)}
+.lrow .lt{font-weight:650;color:var(--text);font-size:15px;line-height:1.5}
+.lrow .lm{font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.6}
+
+/* shift chart */
+.chart{width:100%;height:auto;display:block;margin-top:6px}
+.chart text{font-family:var(--font);letter-spacing:-.01em}
+.legend{display:flex;gap:10px 18px;flex-wrap:wrap;font-size:13px;color:var(--text-2);margin-top:12px}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.tooltip{position:fixed;pointer-events:none;background:var(--text);color:var(--bg);font-size:13px;line-height:1.55;padding:8px 12px;border-radius:10px;opacity:0;transition:opacity .1s;z-index:50;max-width:360px;white-space:normal;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px;gap:2px}
+.seg button{border:0;background:transparent;font-size:13.5px;font-weight:550;color:var(--muted);padding:7px 14px;border-radius:9px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap}
+.seg button:hover:not(.on){color:var(--text);background:var(--card)}
+.seg button.on{background:var(--indigo);color:#fff;font-weight:650;box-shadow:0 4px 12px rgba(47,78,126,.15)}
+html[data-theme="dark"] .seg{background:var(--card-2)}
+#scenarioDesc{font-size:14px;color:var(--text-2);line-height:1.7;max-width:1100px;margin:10px 0 6px!important}
+#dailyRegime{display:inline-block;font-size:13px;font-weight:600!important;color:var(--indigo);background:var(--indigo-tint);padding:3px 12px;border-radius:999px;vertical-align:4px;letter-spacing:-.01em}
+.ratio{display:flex;height:8px;border-radius:8px;overflow:hidden;background:var(--line);min-width:150px;gap:2px}
+.ratio i{display:block;height:100%}
+.ratio .kk{background:var(--yellow);border-radius:8px 0 0 8px}
+.ratio .pf{background:var(--indigo);border-radius:0 8px 8px 0}
+.rlab{font-size:12.5px;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+.rlab span:first-child{color:var(--yellow);font-weight:600}
+.rlab span:last-child{color:var(--indigo);font-weight:600}
+
+
+/* ---- readability: sentence lists, time chips ---- */
+.sx{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.sx li{position:relative;padding-left:14px;margin:0;line-height:1.62}
+.sx li::before{content:"";position:absolute;left:3px;top:.72em;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.4}
+td .sx{gap:6px}
+.tile .sx,.stat .sx{gap:6px}
+.sx-title{display:block;margin-bottom:8px;font-weight:700;color:var(--text);font-size:1.02em}
+.sx-title + .sx-one{display:block}
+.sx .lab{font-weight:650;color:var(--text)}
+.vs .a,.vs .b{display:block}
+.tm{font-weight:650;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.005em;white-space:nowrap}
+.note{max-width:1040px}
+.note .sx{gap:6px}
+h2{display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:4px;height:20px;border-radius:4px;background:var(--indigo);flex:none}
+.card h2::before{height:17px}
+.chead .ct{display:flex;align-items:center;gap:10px}
+.chead .ct::before{content:"";width:4px;height:17px;border-radius:4px;background:var(--indigo);flex:none}
+td{line-height:1.62}
+th{position:relative}
+tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--panel) 55%,transparent)}
+tbody tr:hover td{background:var(--row-hover)}
+.kv dd .sx{gap:5px}
+.grid > .card{margin-top:0}
+td .pill{white-space:normal;text-align:left}
+
+.dstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 18px}
+.dstats .db{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.dstats .db .dk{font-size:12.5px;color:var(--muted);font-weight:600}
+.dstats .db .dv{font-size:18px;font-weight:750;color:var(--text);letter-spacing:-.03em;margin-top:2px}
+table.duty th,table.duty td{text-align:center;min-width:88px}
+table.duty th:first-child,table.duty td:first-child,table.duty td:nth-child(2),table.duty th:nth-child(2){text-align:left}
+table.duty td .pill{display:inline-block;line-height:1.45;padding:5px 10px;margin:0;border-radius:8px}
+table.duty .off{color:var(--muted-2)}
+table.duty tfoot td{font-weight:650;color:var(--text);border-top:1px solid var(--line-2)}
+.duty-empty{padding:22px;border-radius:12px;background:var(--panel);color:var(--text-2);text-align:center}
+@media (max-width:900px){.dstats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1380px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1100px){
+  .app{grid-template-columns:1fr}
+  .side{position:sticky;top:0;z-index:20;height:auto;flex-direction:row;align-items:center;padding:10px 16px;gap:10px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);scrollbar-width:none}
+  .side::-webkit-scrollbar{display:none}
+  .brand{margin:0 6px 0 0;padding:0}.brand .mark{width:36px;height:36px;font-size:12px}.brand .name,.brand .team{display:none}
+  .menu{flex-direction:row;gap:4px}.menu button{height:38px;padding:0 13px;border-radius:10px;font-size:14px}.menu button svg{display:none}
+  .promo{display:none}
+  .date{display:none}
+  .topbar{position:static}
+  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .g2,.g3,.g4,.g6,.tiles{grid-template-columns:1fr}
+  .content{padding:22px 16px 48px}
+  .topbar{padding:0 16px;height:64px}
+  .ptitle{font-size:20px}
+  .user .un,.user .ur{display:none}
+  .card{padding:22px 20px}
+  .card.tablewrap{padding:6px 6px 10px}
+  h2{font-size:19px}
+  section + section,.view > .card + section,.view > .grid + section{margin-top:40px}
+  .vs{grid-template-columns:1fr;gap:6px}.vs .ar{display:none}
+  .kv{grid-template-columns:1fr}.kv dt{border-bottom:0;padding-bottom:0}.kv dd{padding-top:2px}
+}
+/* ---- UX polish v2 ---- */
+@media (min-width:901px){.g2.wide-l{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}}
+.grid.inner{gap:8px 28px}
+.grid.inner h3{margin-bottom:4px}
+.brand .mark img{width:78%;height:78%;object-fit:contain;display:block}
+.promo b,.pill b,.tooltip b{color:inherit}
+b,strong{font-weight:700}
+body{letter-spacing:-.02em;line-height:1.72;font-feature-settings:"ss06","tnum" 0}
+p,li,dd,td,.d,.lm,.how,.mini,.callout{text-wrap:pretty}
+h1,h2,h3,.ptitle,.tile .v,.stat .v{text-wrap:balance}
+.content{max-width:1440px;padding:40px 44px 80px}
+.card{border-radius:20px;padding:30px 32px}
+.grid{gap:22px;align-items:stretch}
+.grid > .card,.stack > .card{display:flex;flex-direction:column}
+.stack{display:flex;flex-direction:column;gap:22px;min-width:0}
+.stack > .card{flex:1}
+.card h2{font-size:19px;margin-bottom:18px}
+h2{font-size:23px;margin-bottom:18px;letter-spacing:-.04em}
+h3{letter-spacing:-.03em}
+.card ul{line-height:1.75}
+li{margin:8px 0}
+table{font-size:14.2px}
+th{font-size:12.8px;font-weight:650;color:var(--muted);background:var(--panel);padding:13px 16px;border-bottom:1px solid var(--line)}
+thead th:first-child{border-top-left-radius:12px}
+thead th:last-child{border-top-right-radius:12px}
+td{padding:16px;line-height:1.7}
+td.k{color:var(--text);font-weight:650}
+.tile{padding:24px 22px;border-radius:18px}
+.tile .d{flex:1}
+.stat{border-radius:18px;padding:24px}
+.callout{padding:18px 22px;border-radius:14px;line-height:1.75}
+.note{max-width:none}
+.tl{padding-bottom:22px}
+.tl .what{font-size:15.5px}
+.kv dt,.kv dd{padding:12px 0}
+.menu button{font-size:15px;letter-spacing:-.025em}
+.topbar{height:72px}
+.ptitle{font-size:23px}
+/* ---- 역할 매트릭스 ---- */
+.rm{display:inline-block;padding:3px 10px;border-radius:8px;font-size:12.5px;font-weight:700;line-height:1.6;margin-right:6px;white-space:nowrap}
+.rm.main{background:var(--indigo);color:#fff}
+.rm.own{background:var(--indigo-tint);color:var(--indigo);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--indigo) 25%,transparent)}
+.sh{display:inline-block;min-width:62px;text-align:center;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;line-height:1.6;margin-right:8px;color:#fff;white-space:nowrap}
+.sh.am{background:var(--c-am)}.sh.day{background:var(--c-day)}.sh.pm{background:var(--c-pm)}
+html[data-theme="dark"] .sh{color:#141922}
+.shs{display:flex;flex-direction:column;gap:6px}
+.rm-legend{display:flex;flex-wrap:wrap;gap:8px 24px;padding:12px 16px 14px;font-size:13px;color:var(--muted)}
+.rm-legend .sh{margin-right:4px}
+table.rmx td:nth-child(2),table.rmx td:nth-child(3){width:24%}
+table.rmx tr.grp td{background:var(--panel)!important;color:var(--indigo);font-weight:700;font-size:13px;padding:10px 16px;letter-spacing:0;border-bottom:1px solid var(--line-2)}
+.cell-note{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-2);font-size:13.5px;line-height:1.6;color:var(--text)}
+.grid.inner.wide-l{gap:8px 40px}
+/* ---- 자간·줄바꿈 다듬기 ---- */
+body{letter-spacing:-.008em;word-spacing:.02em}
+h1,h2,h3,.ptitle,.chead .ct{letter-spacing:-.02em}
+.tile .v,.stat .v{letter-spacing:-.015em}
+.tile{padding:24px 20px}
+.tile .d,.stat .d{font-size:14px;line-height:1.75;letter-spacing:0;text-wrap:wrap}
+.tile .sx,.stat .sx{gap:10px}
+.sx li{line-height:1.7;padding-left:13px}
+td,dd,li,.callout,.note,.mini{letter-spacing:-.003em}
+@media (max-width:1760px){
+  .tiles{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tiles > .tile{grid-column:span 2}
+  .tiles > .tile:nth-child(4),.tiles > .tile:nth-child(5){grid-column:span 3}
+}
+@media (max-width:900px){
+  .tiles{grid-template-columns:1fr}
+  .tiles > .tile,.tiles > .tile:nth-child(4),.tiles > .tile:nth-child(5){grid-column:auto}
+  .content{padding:22px 16px 48px}
+  .card{padding:22px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.side,.topbar{display:none}.app{display:block}.view{display:block!important;page-break-before:always}.hero h1{display:block;margin-bottom:16px}.card{box-shadow:none;border:1px solid #ddd}tbody tr:hover td{background:none}}
+</style>
+</head>
+<body>
+<div class="tooltip" id="tip"></div>
+<div class="app">
+  <nav class="side" id="side">
+    <div class="brand"><div class="mark"><img src="data:image/png;base64,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" alt="GOOD TO GREAT"></div><div><div class="name">협력마케팅팀</div><div class="team">운영 프로세스</div></div></div>
+    <div class="menu" id="menu"></div>
+    <div class="promo">
+      <div class="pn">1</div>
+      <div class="pt">효율과 매니저 컨디션 동시 중시</div>
+      <div class="pd">업무 효율과 개인 생활·컨디션을 동시에 중시. <b>정시 퇴근</b>, 퇴근 후·주말은 업무와 분리, 야근 대신 인력 충원</div>
+      <button id="promoBtn">원칙 보기</button>
+    </div>
+  </nav>
+  <div class="main">
+    <header class="topbar">
+      <h1 class="ptitle" id="ptitle">개요</h1>
+      <div class="top-right">
+        <span class="date">2026.11</span>
+        <button class="theme" id="themeBtn" title="다크 모드 전환">
+          <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </header>
+    <div class="content">
+
+<!-- ================= 1. 개요 ================= -->
+<section class="view" data-view="overview">
+  <div class="hero">
+    <div>
+      <h1>협력마케팅팀 운영 프로세스 재설계</h1>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><div><h3 class="ct">한눈에 보기</h3></div></div>
+    <div class="tiles">
+      <div class="tile pink"><div class="tico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M22 20a7 7 0 0 0-5-6.7"/></svg></div><div class="v">5명</div><div class="k">최종 정원</div><div class="d">팀장 1 + 매니저 4 (잠정 픽스). 현재는 3명(팀장 1 + 매니저 2)에 경지부 혜영파트장님이 지원 중이며, 5명 체제가 되면 파트장님은 <b>리뷰업무에서 빠짐</b>. 영업자가 현재 6명에서 1.5~2배로 늘면 1명 충원해 6명</div></div>
+      <div class="tile orange"><div class="tico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="v">17:30 · 19:00</div><div class="k">접수 1차 · 2차 마감</div><div class="d">4명 체제부터 하루 두 번 마감. 1차 17:30까지 당일 등록, 2차 19:00까지는 오후 전담이 받음. 지금(3명)은 오후 전담이 없어 18:00 한 번. 리스트는 퇴근 직전까지 송부</div></div>
+      <div class="tile green"><div class="tico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div><div class="v">08~20:00</div><div class="k">근무 커버 시간</div><div class="d">4명 체제부터 도입. 충원 즉시가 아니라 <b>신규 매니저가 인수인계를 마치고 업무에 적응한 뒤부터 시작</b>. 오전조 1명 08~17, 오후 전담 1명 11:00~20:00, 나머지는 10~19. 지금(3명)은 전원 <b>09:30~18:30</b></div></div>
+      <div class="tile purple"><div class="tico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><div class="v">주말 OFF</div><div class="k">주말 업무</div><div class="d">캠페인은 금요일에 등록해 주말에도 모집. 매니저는 주말에 <b>전원 휴무</b>(당직 도입 시 당직자만 토요일 몇 시간). 단, 본인 실수 건은 주말에도 본인이 수습. 주말 인센티브는 계속 폐지</div></div>
+      <div class="tile blue"><div class="tico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div><div class="v">야근 없음</div><div class="k">근태 원칙 (4명 체제부터)</div><div class="d"><b>4명 체제부터 전 직원 야근 금지</b>. 매니저는 예외 없음. 팀장은 <b>팀장 업무에 한해 야근 가능</b>. 4명 체제 전(3명 체제)에는 등록·리스트 송부에 한해 <b>사전 승인 1시간</b>까지 야근 가능. 인력을 충원한 만큼 업무는 근무시간 안에 나눠 끝냄. 야근이 생길 것 같으면 차라리 인력 충원이 매니저 컨디션 관리에 좋음. 입사 초기도 예외 없음. 평일 KPI 550, 5명 체제가 정착되면 450으로 하향</div></div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="chead"><div><h3 class="ct">체제별 운영 기준</h3></div></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>항목</th><th>3명 체제 (팀장 1 + 매니저 2, 현재)</th><th>4명 체제 (팀장 1 + 매니저 3)</th><th>5명 체제 (팀장 1 + 매니저 4, 최종)</th><th>6명 체제 (팀장 1 + 매니저 5, 확장)</th></tr></thead>
+        <tbody>
+          <tr><td class="k">조 편성</td><td><ul class="sx"><li>팀장 <b>09:30~18:30</b></li><li>매니저 2명 <b>09:30~18:30</b></li></ul><div class="cell-note"><span class="pill gray">시차 출근 없음</span>시간대 커버리지는 4명 체제부터</div></td><td><ul class="sx"><li>팀장 10~19</li><li>오전조 1명 08~17</li><li>주간조 1명 10~19</li><li>오후 전담 1명 11:00~20:00</li></ul><div class="cell-note"><span class="pill yellow">시작 시점</span>신규 매니저가 인수인계를 마치고 업무에 적응한 뒤부터</div></td><td>팀장 10~19 · 오전조 1명 08~17 · 주간조 2명 10~19 · 오후 전담 1명 11:00~20:00</td><td>팀장 10~19 · 오전조 2명 08~17 · 주간조 2명 10~19 · 오후 전담 1명 11:00~20:00</td></tr>
+          <tr><td class="k">경지부 지원</td><td><span class="pill indigo">혜영파트장님 지원 중</span></td><td>5명 체제 전까지 지원 유지</td><td><span class="pill gray">지원 종료</span> 혜영파트장님 <b>리뷰업무에서 빠짐</b></td><td>지원 없음</td></tr>
+          <tr><td class="k">접수 마감</td><td><span class="pill pink">18:00 단일</span> 이후 접수는 익일</td><td><span class="pill green">17:30 1차 · 19:00 2차</span> 17:30~19:00 접수는 오후 전담, 19:00 이후 익일</td><td><span class="pill green">17:30 1차 · 19:00 2차</span> 4명 체제와 동일</td><td><span class="pill green">17:30 1차 · 19:00 2차</span> 4명 체제와 동일</td></tr>
+          <tr><td class="k">마감 후 남은 등록</td><td colspan="4">각 담당자가 본인 퇴근 시각까지 본인 건을 마무리. 못 끝낸 건은 <b>다른 매니저에게 넘기지 않고</b> <b>익일 담당자가 처리</b>, 영업자에게 익일 진행 안내. <b>4명 체제부터 야근 전면 금지</b>. 그 전에는 등록·리스트 송부에 한해 <b>사전 승인 1시간</b></td></tr>
+          <tr><td class="k">리스트 송부</td><td colspan="4">전일분 10:00~10:30 각 담당자 직접 송부 · 당일분은 담당자 퇴근 직전까지 (오전조 17:00, 주간조 19:00, 오후 전담 20:00). 퇴근 후 진행분은 광고주 URL</td></tr>
+          <tr><td class="k">전일·야간 영수증 승인</td><td colspan="4"><span class="pill indigo">담당 매니저 원칙</span> 각 캠페인은 <b>담당 매니저만</b> 승인. 4명 체제부터 아침 리스트가 빨리 나가야 하는 캠페인은 오전조에게 매핑해 오전조가 08:00~10:00에 본인 건을 승인하고, 나머지는 각 담당자가 10시 출근 후 본인 건을 승인. 3명 체제는 전원 09:30 출근 후 본인 건 승인. 월요일은 금요일 오후·주말 진행분 포함</td></tr>
+          <tr><td class="k">저녁 진행분 승인</td><td colspan="4">각 담당자가 퇴근 직전 본인 건 1회 승인. 이후 진행분은 익일 그 캠페인 담당자가 승인 (오전조 매핑 건은 08시, 나머지는 10시)</td></tr>
+          <tr><td class="k">주말</td><td colspan="4">캠페인은 금요일 접수 마감까지 접수해 <b>금요일에 전부 등록</b>하고 주말에도 모집. 매니저는 <b>전원 휴무</b>(당직 도입 시 당직자만), <b>본인 실수 건만</b> 본인이 수습. 영수증 승인·문의는 월요일에 각 캠페인 담당 매니저</td></tr>
+          <tr><td class="k">토요일 당직<br><span class="mini">도입 미정, 5명 체제 확정 후 결정</span></td><td>없음 (주말 <b>전원 휴무</b>)</td><td>없음 (주말 <b>전원 휴무</b>)</td><td><span class="pill yellow">도입 여부 결정</span><ul class="sx"><li><b>5명 체제 확정 후</b> 필요하다고 판단되면 도입</li><li>도입 시 매니저 4명 순번, 4주에 1회</li></ul></td><td><ul class="sx"><li>도입했을 경우 매니저 5명 순번</li><li>5주에 1회</li></ul></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    <div class="card">
+      <div class="chead"><div><h3 class="ct">주간 리듬</h3></div></div>
+      <div class="lrow"><div class="sq blue">월</div><div><div class="lt">주말 진행 건 수습·해결</div><div class="lm">주말 사이 진행된 건 전반을 정리. 각 담당자가 본인 건 영수증 승인(오전조 매핑 건 08시), 문의·오류 처리, 10:00~10:30 리스트</div></div></div>
+      <div class="lrow"><div class="sq green">화</div><div><div class="lt">팀장회의</div></div></div>
+      <div class="lrow"><div class="sq orange">금</div><div><div class="lt">퇴근 전 확인</div><div class="lm">주말 진행 건 등록 완료 확인, 월요일 인계 정리</div></div></div>
+      <div class="lrow"><div class="sq gray">토·일</div><div><div class="lt">매니저 전원 휴무</div><div class="lm"><b>본인 실수 건만</b> 본인이 수습. 당직 도입 후에는 토요일 당직자 1명만. 당직 시간은 달마다 C/S가 몰린 시간을 보고 정해 그 달 고정</div></div></div>
+    </div>
+
+  <section id="why">
+    <h2>왜 다시 짜는가</h2>
+    <div class="grid g2">
+      <div class="card">
+        <p class="quote">1순위는 인력 충원, 2순위는 업무 프로세스 개선으로 업무 강도와 압박을 없앰.</p>
+        <div class="callout indigo" style="margin-top:14px"><b>우선순위.</b> 업무 효율과 매니저 개개인의 생활·컨디션을 동시에 중시</div>
+      </div>
+      <div class="card">
+        <ul>
+          <li><b>시간을 사람에게 맞추지 않고, 사람을 시간에 배치함</b>
+            <ul>
+              <li>오전 10시 리스트와 저녁 접수는 야근·주말 근무가 아니라 시차 출근과 오후 전담으로 해결</li>
+              <li>매니저 개개인의 <b>정시 퇴근</b> 보장</li>
+              <li>퇴근 이후에는 업무와 분리, 업무 연락 없음</li>
+              <li>주말도 업무와 분리, 매니저 <b>전원 휴무</b>로 개인 생활 존중 (본인 실수 건 수습만 예외)</li>
+              <li>과도한 리뷰어 문의로 힘들던 부분은 인력 충원 후 캠페인을 나눠 맡는 것으로 대체해 1인당 문의량 감소</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2>변경 전 · 후</h2>
+    <div class="card">
+      <div class="vs"><div><span class="lbl">출근 구조</span><span class="b">전원 09:30 출근, 18:30 퇴근. 아침 승인과 저녁 접수는 야근·재택으로 흡수</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">기본 퇴근은 다른 부서와 같은 19:00. 주간조 2명과 팀장 10~19, 오전조 1명만 08~17(아침 리스트가 빠른 캠페인 담당), 오후 전담 1명 11:00~20:00(저녁 진행 업체 담당)</span></div></div>
+      <div class="vs"><div><span class="lbl">접수 마감</span><span class="b">18:00~18:20까지 접수, 급한 건은 퇴근 후 처리</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">3명 체제는 <b>18:00 단일</b> 마감. 4명 체제부터 <b>17:30 1차</b> 마감, 17:30~19:00은 오후 전담, <b>19:00 2차</b> 마감 이후 익일 접수</span></div></div>
+      <div class="vs"><div><span class="lbl">리스트 송부</span><span class="b">업체별 요청 시각(14~17시)에 맞춰 수시 송부, 10시 전일분</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">10:00~10:30 전일분, 당일분은 담당자 퇴근 직전까지 송부. 퇴근 후 진행분은 광고주 URL로 영업자가 확인</span></div></div>
+      <div class="vs"><div><span class="lbl">주말</span><span class="b">모집·승인·오류 수정을 담당자가 각자 처리, 리뷰어 연락 상시 수신</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">캠페인은 금요일 등록으로 주말에도 모집. 매니저는 주말 <b>전원 휴무</b>(본인 실수 건 수습만 예외), 승인·오류는 월요일 처리, 주말 인센티브 계속 폐지</span></div></div>
+      <div class="vs"><div><span class="lbl">영업자 요청</span><span class="b">실무진에게 개별 요청, 예외 접수 수시</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">배분 톡방과 헤더 경유. 예외는 팀장 승인, 주말 연락은 팀장이 차단</span></div></div>
+      <div class="vs"><div><span class="lbl">인력</span><span class="b">실행 3~4명, 팀장이 실무 병행</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">팀장 1 + 매니저 4 (잠정 픽스). 현재 지원 중인 경지부 혜영파트장님은 5명 체제가 되면 <b>리뷰업무에서 빠짐</b>. 영업자가 현재 6명에서 1.5~2배로 늘면 6명. 팀장 실무는 매니저 1인 물량의 <b>50% 이하</b>(일반구매 캠페인은 적정량, 자동구매 위주, 매니저가 바쁠 때 투입)</span></div></div>
+      <div class="vs"><div><span class="lbl">야근</span><span class="b">등록·리스트 송부에 한해 사전 승인 1시간. 입사 초기는 유연 운영</span></div><div class="ar">→</div><div><span class="lbl">변경 후</span><span class="a">모든 직원이 업무와 일상생활을 분리할 수 있도록 <b>정시 퇴근</b>이 기준. <b>4명 체제부터</b> 협력팀 <b>전 직원 야근 금지</b>. 매니저는 누구도 예외 없고, 입사 초기·업무 미숙도 예외 없음. 팀장은 <b>팀장 업무에 한해 야근 가능</b>. 4명 체제 전(3명 체제)에는 등록·리스트 송부에 한해 <b>사전 승인 1시간</b>까지 야근 가능</span></div></div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= 2. 조직·역할 ================= -->
+<section class="view" data-view="roles">
+  <div class="hero"><div><h1>조직과 역할</h1></div></div>
+
+  <div class="grid g4">
+    <div class="card stat"><div class="row"><div class="ico indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div><div><div class="k">팀장(헤더)</div><div class="v">1</div><div class="d">10:00~19:00 · 관리 본업</div></div></div></div>
+    <div class="card stat"><div class="row"><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"/></svg></div><div><div class="k">오전조</div><div class="v">1</div><div class="d">08:00~17:00 · 아침 리스트가 빠른 캠페인 담당, 고정 + 백업</div></div></div></div>
+    <div class="card stat"><div class="row"><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h6"/></svg></div><div><div class="k">주간조</div><div class="v">2</div><div class="d">10:00~19:00 · 등록·관리 중심, 회사 표준 근무</div></div></div></div>
+    <div class="card stat"><div class="row"><div class="ico pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div><div><div class="k">오후 전담</div><div class="v">1</div><div class="d">11:00~20:00 · 저녁 진행 업체·마감 후 등록 담당, 고정 + 백업</div></div></div></div>
+  </div>
+
+  <section>
+    <h2>역할 매트릭스</h2>
+    <div class="card tablewrap">
+      <div class="rm-legend"><span><span class="rm main">주담당</span> 그 업무의 책임자</span><span><span class="rm own">담당 건</span> 본인에게 배정된 캠페인만 처리</span><span><span class="sh am">오전조</span><span class="sh day">주간조</span><span class="sh pm">오후 전담</span> 조별로 시각·역할이 다른 부분</span></div>
+      <table class="rmx">
+        <thead><tr><th>업무</th><th>팀장(헤더)</th><th>매니저 공통</th><th>조별 시각·차이</th></tr></thead>
+        <tbody>
+          <tr class="grp"><td colspan="4">접수 · 분배</td></tr>
+          <tr><td class="k">접수 확인·가이드 검수·반려</td><td><span class="rm main">주담당</span></td><td>-</td><td><div class="shs"><div><span class="sh pm">오후 전담</span>마감 후 접수 1차 검수</div></div></td></tr>
+          <tr><td class="k">분배·결재 승인</td><td><span class="rm main">주담당</span></td><td>-</td><td>-</td></tr>
+          <tr><td class="k">광고주 URL 당일 추가</td><td><span class="rm main">주담당</span> 퇴근 전 필수, 마감 후 접수분 포함</td><td>-</td><td>-</td></tr>
+          <tr class="grp"><td colspan="4">캠페인 진행</td></tr>
+          <tr><td class="k">캠페인 등록·라이브</td><td>매니저 1인 물량의 <b>50% 이하</b></td><td><span class="rm own">담당 건</span></td><td><div class="shs"><div><span class="sh pm">오후 전담</span>17:30~19:00 접수분 등록</div></div></td></tr>
+          <tr><td class="k">전일·야간 영수증 승인</td><td>담당 건</td><td><span class="rm own">담당 건</span></td><td><div class="shs"><div><span class="sh am">오전조</span>08:00~10:00</div><div><span class="sh day">주간조</span>10:00~</div><div><span class="sh pm">오후 전담</span>11:00~</div></div></td></tr>
+          <tr><td class="k">전일 리스트 송부</td><td>-</td><td><span class="rm own">담당 건</span></td><td><div class="shs"><div><span class="sh am">오전조</span>10:00 정각</div><div><span class="sh day">주간조</span>10:30까지</div><div><span class="sh pm">오후 전담</span>11:30까지 (업체 사전 합의)</div></div></td></tr>
+          <tr><td class="k">저녁 진행분 승인</td><td>담당 건, 퇴근 전</td><td><span class="rm own">담당 건</span> 퇴근 전 1회</td><td><div class="shs"><div><span class="sh am">오전조</span>17:00 전</div><div><span class="sh day">주간조</span>19:00 전</div><div><span class="sh pm">오후 전담</span>19:00~20:00</div></div></td></tr>
+          <tr><td class="k">당일 리스트 송부</td><td>누락 점검</td><td><span class="rm own">담당 건</span> 퇴근 직전</td><td><div class="shs"><div><span class="sh am">오전조</span>17:00 전</div><div><span class="sh day">주간조</span>19:00 전</div><div><span class="sh pm">오후 전담</span>20:00 전</div></div></td></tr>
+          <tr><td class="k">캠페인 재세팅·모니터링</td><td>미모집 캠페인 상단 고정</td><td><span class="rm own">담당 건</span></td><td><div class="shs"><div><span class="sh pm">오후 전담</span>저녁 이상 감지 시 담당자·팀장 공유</div></div></td></tr>
+          <tr><td class="k">미모집 에스컬레이션</td><td><span class="rm main">주담당</span> 총괄·홍보·수동구매 연결</td><td>1차 조치</td><td>-</td></tr>
+          <tr class="grp"><td colspan="4">응대 · 보고</td></tr>
+          <tr><td class="k">업체 응대 (팀채팅)</td><td><span class="rm main">주담당</span> 전 톡방 입장·중재</td><td><span class="rm own">담당 건</span></td><td><div class="shs"><div><span class="sh pm">오후 전담</span>저녁 응대</div></div></td></tr>
+          <tr><td class="k">리뷰어 문의</td><td><span class="rm main">주담당</span> 1:1 게시판·페이백 계정</td><td><span class="rm own">담당 건</span> CS</td><td>-</td></tr>
+          <tr><td class="k">자동구매 오류 1차 분류</td><td>개발 담당 소통</td><td><span class="rm own">담당 건</span></td><td><div class="shs"><div><span class="sh pm">오후 전담</span>저녁 오류</div></div></td></tr>
+          <tr><td class="k">업무보고</td><td><span class="rm main">주담당</span> 취합·작업일보·월 검수</td><td>퇴근 전 개인 보고</td><td><div class="shs"><div><span class="sh am">오전조</span>17:00 전</div><div><span class="sh day">주간조</span>19:00 전</div><div><span class="sh pm">오후 전담</span>20:00 전</div></div></td></tr>
+          <tr><td class="k">팀장회의·대표 소통</td><td><span class="rm main">주담당</span> 주 1회 팀장회의(화) 또는 별도 소통</td><td>-</td><td>-</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div>
+      <div class="card">
+        <h2>팀장 업무 범위</h2>
+        <div class="callout indigo"><b>원칙.</b> 팀장은 관리가 본업. 실무는 매니저 1인 진행 건의 <b>50% 이하</b>로만 맡음. 실무에 치이지 않아야 관리자 역할을 하고 팀장 업무를 끝까지 이행할 수 있음.</div>
+        <h3 style="margin-top:16px">실무 상한</h3>
+        <dl class="kv">
+          <dt>전체 물량</dt><dd>매니저 1인 평균 진행 건의 <b>50% 이하</b></dd>
+          <dt>일반구매</dt><dd>일반구매 캠페인은 <b>적정량</b>만 진행</dd>
+          <dt>지원 투입</dt><dd>적정량을 넘었더라도 매니저들 업무량이 몰리면 <b>추가로 투입</b></dd>
+          <dt>자동구매</dt><dd>자동구매 위주로 50%를 충족</dd>
+        </dl>
+        <h3 style="margin-top:16px">매일</h3>
+        <ul>
+          <li>접수 가이드 검수와 반려, 담당자 분배, 결재 승인, 배분 톡방 태그</li>
+          <li>미모집 캠페인 상단 고정, 홍보 문구 배포, 수동구매·내부자 구매 연결</li>
+          <li>모든 업체 톡방 입장, 부당 요청 커트(점심시간 리스트, 퇴근 후 모집, 마감 후 접수)</li>
+          <li>1:1 페이백 게시판 처리, 페이백 전용 계정 응대, 지연 현황 팔로업</li>
+          <li>광고주 URL 당일 캠페인 추가, 퇴근 전 업체 톡방 금일 마감 노티</li>
+          <li>팀원 업무보고 취합, 총괄 작업일보 업로드</li>
+        </ul>
+        <h3 style="margin-top:14px">주간·월간</h3>
+        <ul>
+          <li>월 1회 성과 데이터(미모집 회고), 월초 듀얼넘버·연장근로 지출결의, 월말 근무일지 검수, 데이터 회고 확인</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>고정 근무와 담당 원칙</h2>
+    <div class="card">
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>자리</th><th>방식</th><th>이유</th><th>보완</th></tr></thead>
+          <tbody>
+            <tr><td class="k">오후 전담 (11:00~20:00)</td><td><span class="pill indigo">고정</span></td><td>17:30 이후 접수 등록과 마감 정리는 업체 요구사항을 아는 사람이 해야 사고가 안 남. 채용도 이 시간대 희망자를 뽑는 자리라 불공정이 아님.</td><td>저녁 진행이 잦은 업체를 이 사람 매핑으로 이동. 백업 1명을 지정해 분기마다 하루씩 교대 근무로 익혀 두고, 연차·퇴사 시 백업이 대신.</td></tr>
+            <tr><td class="k">오전조 (08~17)</td><td><span class="pill indigo">고정</span></td><td>아침 리스트가 빨리 나가야 하는 캠페인(업체 요구 시각 10시 정각, 오전 일찍 구매 시작 등)을 이 사람에게 매핑. 08시에 출근해 본인 캠페인을 승인하고 10시에 바로 송부.</td><td>다른 매니저의 캠페인은 승인하지 않음. 업체 규칙을 가장 잘 아는 사람은 담당 매니저라, 일괄 승인은 사고로 이어지기 쉽기 때문. 백업 1명을 지정해 연차·퇴사 시 인수인계 메모 기준으로 대신. 채용 시 이른 출근 희망자를 우선.</td></tr>
+            <tr><td class="k">주간조 (10~19) · 팀장</td><td><span class="pill indigo">고정</span></td><td>다른 부서와 같은 기본 근무 시간. 주간조도 로테이션하지 않음.</td><td>-</td></tr>
+            <tr><td class="k">시간대 변경 (매니저 요청 시)</td><td><span class="pill green">요청 시 변경</span></td><td>고정이 원칙이지만 생활 여건이 바뀌거나 다른 시간대를 원하면 매니저가 팀장에게 요청. 요청을 막지 않음.</td><td>팀장이 맞바꿀 사람이나 충원 시점을 보고 다음 달 근무표부터 반영. 바뀌는 시간대에 맞는 캠페인 매핑도 함께 옮기고, 업체 톡방에 담당자 변경을 알린 뒤 인수인계 메모를 남김.</td></tr>
+            <tr><td class="k">토요일 당직 (도입 시)</td><td><span class="pill green">매니저 순번</span></td><td>도입 미정. <b>5명 체제 확정 후</b> 도입 여부를 정함. 도입 시 오전조·주간조·오후 전담 구분 없이 매니저 전원이 순번으로 돌아감. 본인 계정 업무를 끝내면 다른 매니저 계정 업무를 이어감.</td><td>입사 8주 이내 신입만 순번에서 제외. 당직 시간은 달마다 C/S가 몰린 시간을 보고 정해 그 달 고정. 다음 주 평일 화~목 중 <b>하루를 정해 3시간 늦게 출근</b>. 자세한 순번은 주말 운영 탭</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><b>담당 매니저 원칙.</b> 승인·리스트 송부·재세팅·정보 수정은 <b>담당 매니저만</b> 처리. 시간대에 맞춰 캠페인을 처음 배분할 때 매핑(아침 리스트가 빠른 캠페인은 오전조, 저녁 진행 업체는 오후 전담). 부재 시에는 지정 백업이 인수인계 메모 기준으로 대행. 예외는 토요일 당직(도입 시): 당직자가 본인 계정의 업무를 끝낸 뒤, 다른 매니저 계정의 업무를 이어감.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>모집 채널 비율 (카카오톡 수동 모집 / 플랫폼 모집)</h2>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th>체제</th><th>매니저</th><th style="min-width:200px">비율</th></tr></thead>
+        <tbody>
+          <tr><td class="k">3명 (팀장 1 + 매니저 2, 현재)</td><td>매니저 2명</td><td><span class="pill yellow">카카오톡 수동 모집 보류</span></td></tr>
+          <tr><td class="k" rowspan="2">4명 (팀장 1 + 매니저 3)</td><td>매니저 1명</td><td><div class="ratio"><i class="kk" style="width:70%"></i><i class="pf" style="width:30%"></i></div><div class="rlab"><span>카카오톡 70%</span><span>플랫폼 30%</span></div></td></tr>
+          <tr><td>나머지 매니저 2명</td><td><div class="ratio"><i class="kk" style="width:20%"></i><i class="pf" style="width:80%"></i></div><div class="rlab"><span>카카오톡 20%</span><span>플랫폼 80%</span></div></td></tr>
+          <tr><td class="k" rowspan="3">5명 (팀장 1 + 매니저 4, 최종)</td><td>매니저 2명</td><td><div class="ratio"><i class="kk" style="width:20%"></i><i class="pf" style="width:80%"></i></div><div class="rlab"><span>카카오톡 20%</span><span>플랫폼 80%</span></div></td></tr>
+          <tr><td>매니저 1명</td><td><div class="ratio"><i class="kk" style="width:50%"></i><i class="pf" style="width:50%"></i></div><div class="rlab"><span>카카오톡 50%</span><span>플랫폼 50%</span></div></td></tr>
+          <tr><td>매니저 1명</td><td><div class="ratio"><i class="kk" style="width:70%"></i><i class="pf" style="width:30%"></i></div><div class="rlab"><span>카카오톡 70%</span><span>플랫폼 30%</span></div></td></tr>
+          <tr><td class="k" rowspan="3">6명 (팀장 1 + 매니저 5, 확장)</td><td>매니저 3명</td><td><div class="ratio"><i class="kk" style="width:20%"></i><i class="pf" style="width:80%"></i></div><div class="rlab"><span>카카오톡 20%</span><span>플랫폼 80%</span></div></td></tr>
+          <tr><td>매니저 1명</td><td><div class="ratio"><i class="kk" style="width:50%"></i><i class="pf" style="width:50%"></i></div><div class="rlab"><span>카카오톡 50%</span><span>플랫폼 50%</span></div></td></tr>
+          <tr><td>매니저 1명</td><td><div class="ratio"><i class="kk" style="width:70%"></i><i class="pf" style="width:30%"></i></div><div class="rlab"><span>카카오톡 70%</span><span>플랫폼 30%</span></div></td></tr>
+        </tbody>
+      </table>
+      <p class="note">비율은 캠페인 기준. 팀장은 비율 대신 해당 가이드의 특성을 보고 건바이건으로 카카오톡 수동 모집을 진행. 분배 시 각 매니저의 비율에 맞춰 카카오톡 수동 모집 건과 플랫폼 모집 건을 배정. 비율에서 크게 벗어나면 팀장과 매니저의 소통을 통해 조정.</p>
+    </div>
+  </section>
+
+</section>
+
+<!-- ================= 3. 하루 운영 ================= -->
+<section class="view" data-view="daily">
+  <div class="hero"><div><h1>하루 운영 타임라인</h1></div></div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+      <h2 style="margin:0">근무 시간대와 커버리지</h2>
+      <div class="seg" id="scenarioSeg">
+        <button data-sc="3">팀장 1 + 매니저 2</button>
+        <button data-sc="4">팀장 1 + 매니저 3</button>
+        <button data-sc="5" class="on">팀장 1 + 매니저 4</button>
+        <button data-sc="6">팀장 1 + 매니저 5</button>
+      </div>
+    </div>
+    <p class="mini" id="scenarioDesc" style="margin:0 0 10px"></p>
+    <svg class="chart" id="shiftChart" viewBox="0 0 1000 312" role="img" aria-label="근무 시간대 차트"></svg>
+    <div class="legend" id="chartLegend"></div>
+    <p class="note">표시: 10:00~10:30 전일 리스트 송부 구간 · 접수 마감(3명 체제 <b>18:00 단일</b>, 4명 체제부터 <b>17:30 1차</b>·<b>19:00 2차</b>) · 업무보고는 각자 퇴근 시각(17:00·19:00·20:00)에 맞춰. 당일 리스트는 조별 퇴근 직전(17:00·19:00·20:00)까지 송부. 위 버튼으로 인원 단계를 바꾸면 조 편성과 동시 근무 인원이 함께 바뀜. 동시 근무 인원이 0인 시간대는 붉게 표시됨. 점심 13~14시는 전원 동일하게 쉬므로 모든 단계에서 0명.</p>
+  </div>
+
+  <section>
+    <h2>시간대별 루틴 <span class="mini" id="dailyRegime" style="font-weight:500;margin-left:8px"></span></h2>
+    <div class="card tablewrap">
+      <div class="seg" id="dailySeg" style="margin-bottom:14px"><button data-sc="3">팀장 1 + 매니저 2</button><button data-sc="4">팀장 1 + 매니저 3</button><button data-sc="5" class="on">팀장 1 + 매니저 4</button><button data-sc="6">팀장 1 + 매니저 5</button></div>
+      <table>
+        <thead><tr><th>시각</th><th>누가</th><th>무엇을</th><th>기준</th></tr></thead>
+        <tbody id="dailyRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid g3">
+      <div class="card">
+        <h3>접수 마감 규칙</h3>
+        <dl class="kv">
+          <dt>3명 체제 (현재)</dt><dd><b>18:00</b> 단일 마감 · 오후 전담이 없어 1차·2차 구분 없이 하나로 통일. 18시 이후 접수는 익일 접수</dd>
+          <dt>4명 체제부터 1차</dt><dd><b>17:30</b> · 주간조 퇴근 1시간 30분 전. 이 시각까지 접수된 건은 당일 등록·라이브</dd>
+          <dt>4명 체제부터 2차</dt><dd><b>19:00</b> · 오후 전담 처리, 20:00 퇴근 전까지 등록</dd>
+          <dt>이후 접수</dt><dd>익일 접수로 구분. 톡방에 "익일 접수로 진행합니다" 안내</dd>
+          <dt>단축 근무일</dt><dd>실질 마감 1시간 전 접수 마감, 리스트는 마감 시각까지 전량 송부</dd>
+        </dl>
+        <div class="callout pink" style="margin-top:12px"><b>예외 기준.</b> 마감 후 급한 건은 하루 1~2건, 팀장 승인이 있을 때만 받음.</div>
+      </div>
+      <div class="card">
+        <h3>리스트 송부 규칙</h3>
+        <ul>
+          <li><b>10:00~10:30</b> 전일 진행분 (월요일은 금요일 오후·주말분 포함)</li>
+          <li><b>퇴근 직전</b> 당일 진행분. 담당자가 본인 퇴근 직전까지 송부 (오전조 17:00, 주간조 19:00, 오후 전담 20:00)</li>
+          <li>퇴근 후 진행분은 광고주 URL에서 영업자가 현황 확인. 리스트 다운로드는 승인 후에만</li>
+          <li>신규 업체는 진행 전 송부 기준(전일분 10:00~10:30, 당일분 퇴근 직전)을 안내하고 동의를 받음</li>
+          <li>송부 전 체크 6항목은 운영 기준 탭 참고</li>
+        </ul>
+        <div class="callout yellow" style="margin-top:12px"><b>기준.</b> 당일 리스트는 퇴근 직전까지 송부.</div>
+      </div>
+      <div class="card">
+        <h3>야근 없음 · 정시 퇴근 (4명 체제부터)</h3>
+        <div class="callout pink"><b>4명 체제부터 협력팀 전 직원은 야근하지 않음.</b> 4명 체제(팀장 1 + 매니저 3)가 되고, <b>신규 직원이 인수인계를 마치고 업무가 어느 정도 익숙해진 뒤부터 야근 금지 시작</b>. 그때부터는 <b>매니저 누구도 야근 불가</b>(팀장은 팀장 업무에 한해 가능). 야근을 없애는 대신 인력을 충원했음. 야근이 생길 것 같으면 차라리 인력을 충원하는 것이 각 매니저의 컨디션 관리에 좋음. 늘어난 인력에 맞춰 업무를 고르게 나누어 정시에 퇴근하는 것이 원칙.</div>
+        <ul style="margin-top:12px">
+          <li>4명 체제 전(3명 체제)에는 등록·리스트 송부에 한해 <b>사전 승인 1시간</b>까지 야근 가능</li>
+          <li>팀장은 <b>팀장 업무에 한해 야근 가능</b>. 실무로 인한 야근은 불가</li>
+          <li>입사 초반·업무 미숙으로 남는 야근도 불가, 남은 업무는 <b>익일 본인이 처리</b>하고 물량 배분을 조정</li>
+          <li><b>정시 퇴근</b>이 어려운 날이 반복되면 배분과 시간대 편성을 바꾸고 팀장회의에 보고</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= 4. 주말 ================= -->
+<section class="view" data-view="weekend">
+  <div class="hero"><div><h1>주말 운영</h1></div></div>
+
+  <div class="grid g4">
+    <div class="card stat"><div class="k">토·일 모집</div><div class="v">진행</div><div class="d">주말 진행 건은 금요일 접수 마감(3명 체제 18:00, 4명 체제부터 17:30)까지 접수해 <b>금요일에 전부 등록</b></div></div>
+    <div class="card stat"><div class="k">매니저 주말 근무</div><div class="v">전원 휴무</div><div class="d"><b>본인 실수 건만</b> 시간 상관없이 본인이 수습. 당직 도입 후에는 순번 당직자 1명만 토요일 근무</div></div>
+    <div class="card stat"><div class="k">주말 인센티브</div><div class="v">폐지</div><div class="d">2026.11부 폐지, 앞으로도 계속 폐지</div></div>
+    <div class="card stat"><div class="k">주말 승인·접수·문의</div><div class="v">월요일</div><div class="d">주말 진행분 영수증은 월요일에 각 담당 매니저가 본인 건 승인. 접수와 문의도 월요일</div></div>
+  </div>
+
+  <section>
+    <div>
+      <div class="card">
+        <h2>주말에 하는 것과 하지 않는 것</h2>
+        <div class="grid g2" style="gap:14px">
+          <div class="callout green"><b>하는 것 (본인 실수 수습만)</b>
+            <ul>
+              <li>본인 실수 건은 평일·주말 시간대 상관없이 해당 매니저가 해결</li>
+              <li>자동구매: 본인 세팅 실수(옵션·가격·스케줄 입력 오류)로 구매가 멈추거나 잘못 돌아간 건의 수정</li>
+              <li>일반구매: 본인 실수로 생긴 영수증 오승인·리스트 누락·과구매 건의 수습</li>
+              <li>수습 내용은 팀장에게 보고하고, 월요일 요청&해결 노션에 양식대로 기록</li>
+              <li>본인 실수가 아닌 급한 사고는 팀장(당직 도입 후 당직자)이 일시정지로 확산만 막음</li>
+            </ul>
+          </div>
+          <div class="callout pink"><b>하지 않는 것</b>
+            <ul>
+              <li>영수증 승인, 리스트 송부</li>
+              <li>모집 홍보, 상단 고정, 캠페인 모니터링</li>
+              <li>신규 접수, 캠페인 등록</li>
+              <li>업체 요청에 따른 캠페인 정보 변경</li>
+              <li>영업자 업무 요청 처리 (팀장 선에서 거절, 계속되면 팀장이 <b>부대표·대표에게 보고</b>해 윗선에서 영업자와 소통)</li>
+              <li>리뷰어 문의·페이백 응대 (<b>월요일 출근 후</b> 처리)</li>
+              <li>시스템·업체 귀책 오류 대응 (월요일 처리)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">주말에는 매니저 전원이 쉼. 단, 본인 실수 건은 본인이 수습. 본인 실수인지 판단이 안 서면 손대지 않고 팀장에게 보고. 주말 인센티브는 폐지 상태를 계속 유지.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>주말 오류 대응 분기표</h2>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th>상황</th><th>귀책</th><th>주말 처리</th><th>월요일 처리</th><th>안내 주체</th></tr></thead>
+        <tbody>
+          <tr><td class="k">담당자 세팅 실수로 구매 정지·오작동</td><td>협력팀 (본인)</td><td><span class="pill pink">수습</span> 담당 매니저가 직접 수정</td><td>사고 보고 양식 작성, 팀장 확인</td><td>담당자 → 팀장</td></tr>
+          <tr><td class="k">본인 실수로 영수증 오승인·리스트 누락</td><td>협력팀 (본인)</td><td><span class="pill pink">수습</span> 담당 매니저가 영업자와 함께 수습</td><td>경위·책임소재 기록</td><td>담당자 → 팀장</td></tr>
+          <tr><td class="k">업체가 가격·옵션·상품 정보를 변경</td><td>업체</td><td>처리 없음</td><td>담당 매니저가 재세팅, 변경 사실 톡방 기록</td><td>영업자가 업체에 설명</td></tr>
+          <tr><td class="k">검색 순위 변동으로 상품 미노출</td><td>플랫폼</td><td>처리 없음</td><td>링크형 전환 또는 키워드 재확인</td><td>영업자</td></tr>
+          <tr><td class="k">프로그램·서버 오류</td><td>시스템</td><td>팀장이 개발 담당 1인에게 전달. 매니저 호출 없음</td><td>복구 확인 후 재가동, 영향 캠페인 목록 공유</td><td>팀장이 영업자 관리자방 1회 공지</td></tr>
+          <tr><td class="k">플랫폼 보안 정책 등 전체 장애</td><td>외부</td><td>팀장이 관리자방 공지 1회. 개별 연락 응대 금지</td><td>대표·개발 담당과 대응 방향 결정</td><td>대표</td></tr>
+          <tr><td class="k">주말 진행 건의 리뷰어 영수증 오류·미승인</td><td>리뷰어</td><td>처리 없음</td><td>담당 매니저가 승인·반려, 미모집은 익일 이월</td><td>영업자</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div>
+      <div class="card">
+        <h2>주말에 연락이 왔을 때</h2>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>연락</th><th>받는 사람</th><th>응대</th></tr></thead>
+            <tbody>
+              <tr><td class="k">영업자의 오류 연락</td><td>팀장 (영업자 관리자방)</td><td>본인 실수 건이면 해당 매니저에게 수습 요청, 그 외 급한 사고는 팀장이 일시정지, 나머지는 월요일 처리 안내. 매니저에게 따로 연락하는 것은 <b>팀장이 사전에 차단</b>하고, 차단했는데도 계속되면 <b>부대표·대표에게 보고</b></td></tr>
+              <tr><td class="k">영업자의 업무 요청</td><td>팀장</td><td>팀장 선에서 거절하고 월요일 처리 안내. 계속 요청하면 팀장이 <b>부대표·대표에게 보고</b>해 윗선에서 해당 영업자와 직접 소통. 매니저에게 넘기지 않음</td></tr>
+              <tr><td class="k">업체 톡방 요청</td><td>팀장</td><td>월요일 처리 안내 1회. 캠페인 변경은 하지 않음</td></tr>
+              <tr><td class="k">리뷰어 문의·보이스톡</td><td>받지 않음</td><td>주말에는 응대하지 않음. 전부 <b>월요일 출근 후</b> 처리</td></tr>
+              <tr><td class="k">자동구매 오류 문자</td><td>담당 매니저</td><td>본인 세팅 실수인지 확인. 본인 실수면 바로 수습, 본인 실수가 아니면 월요일에 수습</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>토요일 당직 (도입 미정 · 도입 시 운영안)</h2>
+    <div class="callout yellow"><b>도입 여부.</b> <b>도입은 확정이 아님</b>. 5명 체제가 완료된 뒤 업무 프로세스상 필요하거나 주말에 사건이 계속 터지거나 해결할 일이 생길 것 같다고 판단되면 도입. 토요일 당직 체제는 <b>5명 체제 확정 후</b> 정함. 아래는 도입할 경우의 운영안. 당직 시간은 약 3시간 내외로, 매달 C/S 문의가 집중적으로 몰린 시간을 보고 정하며, 그 달에는 정한 시간으로 고정하고 다음 달에는 다시 그 달의 몰린 시간을 보고 새로 정함. 당직 다음 주 평일 화~목 중 <b>하루를 정해 3시간 늦게 출근</b>. 팀장은 <b>평일 근무를 뺄 수 없어</b> 당직 순번에 들어가지 않음. 당직을 서지 않더라도 주말 매니저 사고 건에 대비해 <b>핸드폰은 항시 ON</b>.</div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <h3>토요일 당직 업무 순서 (시간은 월별 확정)</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>순서</th><th>업무</th><th>기준</th></tr></thead>
+            <tbody>
+              <tr><td class="k">1 사고 확인</td><td>자동구매 오류 문자·구매 중단 건 확인, 사고 확산 차단</td><td>물량 사고가 번지는 경우에만 일시정지 후 담당자 메모·팀장 보고. 수정은 월요일 담당자</td></tr>
+              <tr><td class="k">2 본인 계정</td><td>당직자 본인 담당 캠페인의 금요일 저녁~토요일 진행분 영수증 승인, C/S 처리</td><td>체크 7항목 그대로</td></tr>
+              <tr><td class="k">3 다른 매니저 계정</td><td>본인 건을 끝내고 시간이 남으면 다른 매니저 계정에 들어가 영수증 승인·C/S를 이어가며 당직 시간 채움</td><td>판단이 애매한 건(가격·옵션 차이, 반려)과 캠페인 정보 수정·재세팅은 손대지 않고 담당자 메모</td></tr>
+              <tr><td class="k">4 마무리</td><td>처리 내역 정리, 팀장 보고, 담당자별 인계 메모</td><td>다른 매니저 계정에서 처리한 건은 월요일 담당자에게 목록으로 공유. 정해진 당직 종료 시각에 종료</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">당직자도 영업자·업체 응대, 신규 접수, 캠페인 정보 변경, 리스트 송부, 리뷰어 문의는 하지 않음. 당직자 외 매니저는 주말에 업무가 없다는 기준은 당직을 도입해도 같음. 일요일에는 당직이 없고, 일요일 진행분은 월요일에 각 담당 매니저가 승인. 팀장은 <b>평일 근무를 뺄 수 없어</b> 당직 순번에 들어가지 않음. 당직을 서지 않더라도 주말 매니저 사고 건에 대비해 <b>핸드폰은 항시 ON</b>.</p>
+      </div>
+      <div class="card">
+        <h3>평일 대체 근무 (3시간 늦게 출근)</h3>
+        <dl class="kv">
+          <dt>대체 시간</dt><dd>당직 다음 주 화~목 중 하루 3시간 늦게 출근</dd>
+          <dt>대체일</dt><dd>당직 다음 주 <b>화·수·목 중 하루</b>. 월요일은 주말분 처리, 금요일은 주말 등록 마감이 있어 제외</dd>
+          <dt>오전조</dt><dd>08:00 출근 → <b>11:00 출근</b>, 17:00 퇴근. 10시 리스트는 지정 백업이 인수인계 메모로 송부</dd>
+          <dt>주간조</dt><dd>10:00 출근 → <b>14:00 출근</b>, 19:00 퇴근 (13~14시는 점심)</dd>
+          <dt>오후 전담</dt><dd>11:00 출근 → <b>14:00 출근</b>, 20:00 퇴근 (점심 제외). 17:30 이후 접수·마감 정리는 그대로 맡음</dd>
+          <dt>정하는 법</dt><dd>당직자가 토요일 업무보고에 희망 요일을 적고, 팀장이 월요일에 확정해 월 근무표에 반영</dd>
+          <dt>그날 오전</dt><dd>대체일 오전에 들어오는 담당 건 요청은 팀장이 받아 두었다가 출근하면 넘김. 전일 리스트는 전날 인수인계 메모(업체별 파일명·열 규칙)를 남기고 지정 백업이 송부. 승인이 필요한 건은 출근 후 본인이 처리하도록 업체에 리스트 시각을 미리 안내</dd>
+        </dl>
+        <p class="note">대체일은 다음 주를 넘기지 않음. 대체일과 연차가 겹치면 대체일을 다른 요일로 옮김.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>인원별 토요일 당직 커버리지 (도입 시 예시)</h2>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="mini" id="dutyDesc" style="max-width:640px"></div>
+        <div class="seg" id="dutySeg"><button data-d="3">팀장 1 + 매니저 2</button><button data-d="4">팀장 1 + 매니저 3</button><button data-d="5" class="on">팀장 1 + 매니저 4</button><button data-d="6">팀장 1 + 매니저 5</button></div>
+      </div>
+      <div class="dstats" id="dutyStats"></div>
+      <div class="tablewrap" id="dutyWrap"><table class="duty" id="dutyTable"></table></div>
+      <p class="note">주차는 순번 한 바퀴를 보여 주는 예시. 실제 순번과 대체 요일은 매월 1일 월 근무표에서 확정. 대체일은 화·수·목을 돌아가며 잡아 같은 요일에 몰리지 않게 함. 팀장은 <b>평일 근무를 뺄 수 없어</b> 당직 순번에 들어가지 않음. 당직을 서지 않더라도 주말 매니저 사고 건에 대비해 <b>핸드폰은 항시 ON</b>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>당직 순번 규칙 (도입 시)</h2>
+      <ul>
+        <li>당직은 <b>매니저 전원</b>이 순번으로 섬. 오전조·주간조·오후 전담 구분이 없음. 팀장은 <b>평일 근무를 뺄 수 없어</b> 당직 순번에 들어가지 않음. 당직을 서지 않더라도 주말 매니저 사고 건에 대비해 <b>핸드폰은 항시 ON</b>.</li>
+        <li>당직 시간은 달마다 정함. 그 달에는 정한 시간으로 고정하고, 다음 달에는 다시 C/S가 몰린 시간을 보고 새로 정함</li>
+        <li>당직자는 본인 계정 업무를 끝낸 뒤 시간이 남으면 다른 매니저 계정 업무를 이어가며 당직 시간을 채움</li>
+        <li>당직 다음 주 평일 화~목 중 <b>하루를 정해 3시간 늦게 출근</b></li>
+        <li>순번은 매월 1일 월 근무표와 함께 확정. 주차별 당직자와 대체일을 같은 표에 적음.</li>
+        <li>순번을 맞바꿀 때는 당사자끼리 합의하고 팀장 승인을 받음. 대체일도 함께 옮김.</li>
+        <li>당직일에 연차를 쓰면 다음 순번과 맞바꿈. 빠진 순번은 다음 달 첫 주에 채움.</li>
+        <li>입사 8주 이내 신입은 순번에서 빠짐. 사고를 혼자 판단해야 하는 자리이기 때문.</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<!-- ================= 5. 접수·분배 ================= -->
+<section class="view" data-view="intake">
+  <div class="hero"><div><h1>접수 · 분배 · 결재</h1></div></div>
+
+  <section>
+    <h2>접수 채널과 마감 시각</h2>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th>구분</th><th>접수 경로</th><th>1차 마감 (4명 체제부터)</th><th>2차 마감 (4명 체제부터)</th><th>처리</th></tr></thead>
+        <tbody>
+          <tr><td class="k">일반구매</td><td>다우오피스 상신 + 배분 톡방 링크</td><td>17:30</td><td>19:00 (오후 전담)</td><td>17:30까지 당일 라이브. 이후 익일 진행 기준 등록</td></tr>
+          <tr><td class="k">쿠팡 자동구매</td><td>자동구매 상신 톡방 · 운영지원팀 요청방</td><td>17:30</td><td>19:00 (오후 전담)</td><td>결제 대기 건 담당자 개인톡 전달은 팀장</td></tr>
+        </tbody>
+      </table>
+      <p class="note">운영지원팀은 접수 정제 시간을 고려해 업체에는 공지 마감보다 20분 이른 시각을 안내. 단축 근무일은 실질 마감 1시간 전까지만 접수.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid g2">
+      <div class="card">
+        <h2>배분 전 가이드 검수 8항목</h2>
+        <ol class="steps">
+          <li><div><div class="t">구매요청 시간</div><div class="s">시간대가 현실적인지, 건수 대비 너무 짧지 않은지. 점심시간·퇴근 후 모집 요구는 커트</div></div></li>
+          <li><div><div class="t">구매 건수</div><div class="s">일일·총 건수가 상품·플랫폼 기준으로 소화 가능한지</div></div></li>
+          <li><div><div class="t">리스트 송부 시간</div><div class="s">당일분은 퇴근 직전까지 송부하는 기준에 맞는지. 개별 시각 요구는 영업자에게 안내 후 조정</div></div></li>
+          <li><div><div class="t">상품 링크</div><div class="s">정상 연결, 옵션 일치, 기존 진행 이력(묶음 판단)</div></div></li>
+          <li><div><div class="t">상품 가격</div><div class="s">가이드 금액과 실판매가 일치, 가격변동 여부(20% 초과 불가)</div></div></li>
+          <li><div><div class="t">배송 형태</div><div class="s">실배송 · 가배송 · 가송장 · 회송 중 명확한지</div></div></li>
+          <li><div><div class="t">입금 형태</div><div class="s">입금대행 · 업체입금 · 파일리스트방 전환 여부, 입금자명</div></div></li>
+          <li><div><div class="t">리뷰 조건</div><div class="s">리뷰비, 원고(텍스트 .txt + 포토 넘버링, 엑셀 반려), 키워드, 포토·동영상 특이사항</div></div></li>
+        </ol>
+        <div class="callout pink" style="margin-top:12px"><b>오류가 있으면 배분하지 않음.</b> 영업자·접수 담당자에게 수정 요청하거나 반려 후 재기안을 받음.</div>
+      </div>
+      <div class="card">
+        <h2>접수 불가 · 반려 기준</h2>
+        <h3>접수 불가</h3>
+        <ul>
+          <li>가격변동 캠페인을 가송장(직접전달)으로 진행하는 건</li>
+          <li>가격변동 폭 20% 초과 (가격변동 자체를 받지 않는 것이 가장 안전)</li>
+          <li>병원·보험 앱 리뷰, 경쟁사 악평·별점 하락 요청</li>
+          <li>리뷰어 수요가 없는 플랫폼(지도 앱 등), 상담 결제 구조 플랫폼</li>
+          <li>실배송 동영상 리뷰는 기본 프로세스 아님, 가배송 동영상은 원고 수령 시 소량만</li>
+        </ul>
+        <h3 style="margin-top:12px">반려 후 재기안</h3>
+        <ul>
+          <li>자동구매·일반구매 모두 상신이 올라온 시각에 비해 구매요청 시간이나 리스트 송부 시각이 타이트한 건</li>
+          <li>원고를 엑셀로 접수, 캠페인명·옵션·기획전 링크 누락</li>
+          <li>파일만 보내고 상신 없이 배분 요청 (<b>팀장 컨펌 없이는 진행 금지</b>)</li>
+        </ul>
+        <h3 style="margin-top:12px">새로 추가되는 기준</h3>
+        <ul>
+          <li>주말 진행 요청은 금요일 접수 마감까지만 접수. 금요일 이후 들어온 주말 건은 월요일 접수</li>
+          <li>3명 체제는 접수 마감 18:00 하나로 운영, 4명 체제부터 17:30·19:00 두 번.</li>
+          <li>영업부 팀장의 일반구매 직접 등록: 11월 현재 영업부 팀장들이 일반구매를 직접 등록 중. <b>11월까지만</b> 직접 등록하며, <b>12월부터는 직접 등록 폐지</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+        <h2>분배 원칙과 절차</h2>
+        <div class="grid g2 inner">
+        <div>
+        <ol class="steps">
+          <li><div><div class="t">상신·톡방에서 신규 캠페인 링크 확인</div></div></li>
+          <li><div><div class="t">업무분장(굿투 확인용)에서 담당자·업체 매핑 확인</div></div></li>
+          <li><div><div class="t">관리자 계정에서 링크·업체명 검색, 이전 진행 이력과 담당자 확인</div></div></li>
+          <li><div><div class="t">기존 담당자 가능 여부 확인, 불가 시 컨디션 보고(이름 / 진행 캠페인 수 / 역량 %) 기준으로 대체</div></div></li>
+          <li><div><div class="t">결재 댓글에 "OO 진행" 기재 후 승인</div></div></li>
+          <li><div><div class="t">배분 톡방에 담당자 태그</div></div></li>
+        </ol>
+        </div>
+        <div>
+        <div class="callout indigo"><b>우선순위.</b> 업무분장 매핑 → 기존 담당자 → 가용량(컨디션). 신규 영업자의 리뷰 요청 건은 해당 영업자가 업무에 익숙해질 때까지 <b>팀장이 실무 담당</b>.</div>
+        <h3 style="margin-top:18px">시간대 고려 (신규)</h3>
+        <ul>
+          <li>배분할 때 시간대 매핑을 함께 봄. 아침 리스트가 빨리 나가야 하는 캠페인은 오전조, 저녁 진행이 잦은 업체는 오후 전담에게 매핑. 오전 리스트가 필요한 캠페인은 오후 전담에게 매핑하지 않음</li>
+          <li>4명 체제부터 17:30 이후 접수 중 신규 업체 건은 오후 전담 담당으로 배분. 기존 담당자가 있는 업체 건은 오후 전담이 일시정지 상태로 등록만 해 두고, 익일 담당 매니저가 검수·라이브·승인·리스트를 맡음</li>
+          <li>신규 업체 톡방 개설 시 <b>헤더와 굿투그레이트 본사 계정 두 개 모두 무조건 초대</b></li>
+        </ul>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>광고주 URL 운영 (마감 후·주말 현황 확인 수단)</h2>
+      <p class="mini" style="margin-bottom:16px">퇴근 후와 주말에는 리스트를 송부하지 않으므로, 영업자가 진행 현황을 스스로 확인할 수 있어야 함. 영업자별 공통 URL에 당일 접수 캠페인을 전부 넣음.</p>
+      <div class="grid g2 inner">
+        <div><h3>운영</h3><ul><li>신규 영업자 URL 최초 생성은 팀장</li><li>당일 접수분은 퇴근 전 전부 추가, 익일로 넘기지 않음</li><li>마감 후 접수분도 팀장이 직접 추가 (해당 계정은 팀장만 사용 가능)</li><li>에이전트 계정으로만 추가</li></ul></div>
+        <div><h3>안내 문구</h3><ul><li>현황 확인 용도로만 사용</li><li>영수증 승인 전 리스트 다운로드 금지 (다운로드 시 캠페인 사고로 간주)</li><li>설정 변경 금지</li><li>캠페인은 같은 링크에 누적 추가</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<!-- ================= 6. 운영 기준 ================= -->
+<section class="view" data-view="ops">
+  <div class="hero"><div><h1>운영 기준</h1></div></div>
+
+  <section>
+    <h2>캠페인 라이프사이클과 담당</h2>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th>단계</th><th>내용</th><th>담당</th><th>기준</th></tr></thead>
+        <tbody>
+          <tr><td class="k">1 접수</td><td>광고주 가이드가 영업자를 통해 상신·톡방으로 들어옴</td><td>영업자 · 운영지원팀</td><td>3명 체제 <b>18:00 단일</b> · 4명 체제부터 <b>17:30 1차</b>, <b>19:00 2차</b></td></tr>
+          <tr><td class="k">2 검수·결재</td><td>가이드 8항목 검수, 반려 또는 승인</td><td>팀장</td><td>오류 시 배분 금지</td></tr>
+          <tr><td class="k">3 분배</td><td>매핑 → 기존 담당 → 가용량. 댓글 + 톡방 태그</td><td>팀장</td><td>10:30 전 전일분 완료</td></tr>
+          <tr><td class="k">4 등록</td><td>일시정지 상태로 등록 → 검수 → 라이브</td><td>담당 매니저 · 오후 전담</td><td>-</td></tr>
+          <tr><td class="k">5 모집</td><td>리뷰어 신청. 미달 시 에스컬레이션</td><td>담당 매니저 → 팀장</td><td>미모집 예상 단계에서 선제 조치</td></tr>
+          <tr><td class="k">6 구매·인증</td><td>구매 후 영수증 제출, 승인</td><td><b>담당 매니저만</b> (오전조 매핑 건 08~10시, 나머지 10시~, 저녁분은 퇴근 전)</td><td>-</td></tr>
+          <tr><td class="k">7 리스트 송부</td><td>10:00~10:30 전일분, 당일분 퇴근 직전</td><td>담당 매니저</td><td>-</td></tr>
+          <tr><td class="k">8 리뷰·검수</td><td>리뷰 작성 → 승인, A/S</td><td>담당 매니저</td><td>-</td></tr>
+          <tr><td class="k">9 정산·보고</td><td>출금·페이백, 업무보고 3종</td><td>경영지원부 · 담당 · 팀장</td><td>업무보고는 각자 퇴근 시각에 맞춰</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid g2">
+      <div class="stack">
+      <div class="card">
+        <h2>영수증 승인 체크 7항목</h2>
+        <ul>
+          <li>상품 일치: 캠페인 업체 상품, 상품명·옵션이 가이드와 같은지</li>
+          <li>금액 일치: 총 결제금액이 가이드 또는 요청 금액과 같은지</li>
+          <li>주문번호: 정상 기재, 오류·누락·-1 예외 확인</li>
+          <li>포인트 결제 금지: 쿠팡캐시·네이버포인트 사용 시 반려</li>
+          <li>쿠폰 캠페인: 가격변동 건이면 실결제 금액으로 가격변경 승인</li>
+          <li>배송 유형: 로켓 아닌 캠페인의 로켓 구매는 반려 후 재구매</li>
+          <li>반려 시 사유 입력 필수</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>리스트 송부 전 체크 6항목</h2>
+        <ul>
+          <li>잔여 건수 처리 방향: 익일 이월 vs 고정 (이월 시 건수 재세팅)</li>
+          <li>가격 변동 캠페인은 금액 수기 수정 후 승인</li>
+          <li>영수증 승인 완료, 미승인 건 0</li>
+          <li>주문번호 정상, 타 플랫폼 유형 섞임 없음</li>
+          <li>구매 대기자 독촉 또는 참여 취소</li>
+          <li>다운로드~송부 사이 추가 구매 방지, 파일 열어 최종 확인</li>
+        </ul>
+      </div>
+      </div>
+      <div class="card">
+        <h2>미모집 에스컬레이션 사다리</h2>
+        <ol class="steps">
+          <li><div><div class="t">전사 톡방·자사 오픈채팅 홍보</div><div class="s">자체 진행 · 매일 기본</div></div></li>
+          <li><div><div class="t">참여 중·다계정·취소 리뷰어 개별 안내</div><div class="s">자체 진행</div></div></li>
+          <li><div><div class="t">상단 고정</div><div class="s">팀장이 요청 없이도 미모집 많은 순으로 적용, 경로별 균형보다 물량 소진 우선</div></div></li>
+          <li><div><div class="t">외부 오픈채팅 배포</div><div class="s">팀장이 링크·문구 제작</div></div></li>
+          <li><div><div class="t">내부자 구매 · 수동구매</div><div class="s">시트 제작, 플랫폼 건수 조정, 상신 댓글 기재. 와우 계정 가용 수량 확인</div></div></li>
+          <li><div><div class="t">모집 시간대 확대</div><div class="s">영업자 · 업체 조율</div></div></li>
+          <li><div><div class="t">타계정 · N일 후 재참여 · 중복 참여 오픈</div><div class="s">영업자 · 업체 조율, 묶음 캠페인은 일괄 수정</div></div></li>
+          <li><div><div class="t">입금대행 건 파일리스트방 전환</div><div class="s">영업자·접수자 사전 공유 후 플랫폼과 리뷰어 정보 모두 변경</div></div></li>
+          <li><div><div class="t">리뷰비 인상</div><div class="s">가구매 1,000 → 1,500 → 2,000 / 실배송 0 → 500 → 1,000. 견적 변경이므로 컨펌과 상신 댓글 필수</div></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= 7. 소통·보고 ================= -->
+<section class="view" data-view="comm">
+  <div class="hero"><div><h1>소통과 보고</h1></div></div>
+
+  <section>
+    <h2>정례 소통 라인</h2>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th>라인</th><th>주기</th><th>형식</th><th>고정 안건</th></tr></thead>
+        <tbody>
+          <tr><td class="k">대표 · 부대표 · 마케팅운영본부 총괄팀장 ↔ 협력팀장</td><td>주기적</td><td>톡방 소통</td><td>인력 현황, 업무량, 불합리하거나 힘든 점, 영업자 요청 중 차단이 필요한 건</td></tr>
+          <tr><td class="k">팀장회의</td><td>매주 화요일</td><td>전사 회의, 회의록은 월요일까지</td><td>주말 이슈, 인력 필요 사유, 개선 요청, 영업본부 의견 요청, 1:1 게시판 잔여</td></tr>
+          <tr><td class="k">협력팀장 ↔ 팀원</td><td>상시 + 월 1회 개별 면담</td><td>컨디션 보고, 개별 면담</td><td>업무량, 심리 상태, 반복 실수, 근무 시간대 적합성</td></tr>
+          <tr><td class="k">협력팀장 ↔ 마케팅운영본부 총괄팀장</td><td>2주 1회</td><td>카톡 및 통화 다양하게</td><td>운영 기준 해석, 거래처 특이사항, 산출물 틀, 업무량, 불합리하거나 힘든 점, 영업자 요청 중 차단이 필요한 건, 회사에서 바뀌어야 하는 것, 업무적·심리적 힘듦 등 모든 것</td></tr>
+          <tr><td class="k">협력팀장 ↔ 운영지원팀장</td><td>주기적</td><td>팀채팅</td><td>접수 기준 변경, 리뷰어 DB, 미모집 캠페인 변경 제안</td></tr>
+          <tr><td class="k">협력팀장 ↔ 영업부</td><td>주기적</td><td>영업자와 톡으로 소통</td><td>주말 원칙, 마감 시각, 광고주 URL, 리스트 송부 기준, 업무 부당성, 업무 변경 및 요청 등</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div>
+      <div class="card">
+        <h2>보고 산출물 일정</h2>
+        <div class="timeline">
+          <div class="tl"><div class="when">매일 19:00 (오전조 17:00, 오후 전담 20:00)</div><div class="what">개인 업무보고 3종</div><div class="how">업무보고 엑셀, 입대영수증 압축, 리스트 압축. 노션 근무일지 업로드 후 경지부 톡방 노티. 월요일은 주말 시트 포함</div></div>
+          <div class="tl"><div class="when">매일 퇴근 전</div><div class="what">총괄 작업일보 · 광고주 URL · 금일 마감 노티</div></div>
+          <div class="tl green"><div class="when">매주 월요일</div><div class="what">1:1 게시판 잔여 · 주말 사고 건</div></div>
+          <div class="tl"><div class="when">매주 화요일</div><div class="what">팀장회의</div><div class="how">회의록 월요일까지</div></div>
+          <div class="tl yellow"><div class="when">매월 5일</div><div class="what">듀얼넘버 · 연장근로 지출결의</div><div class="how">출퇴근 기록, 사전승인 시트, 개인 취합 파일 대조. 1일 1시간 한도</div></div>
+          <div class="tl"><div class="when">월 1회 (월초 첫 주)</div><div class="what">성과 데이터 · 미모집 회고</div><div class="how">협력팀 전 직원이 각자 작성. 전월 캠페인 총 건수·미모집 종료·홀딩, 모집률·미모집률은 매월 공통. 팀장은 월별 중점 주제 지정</div></div>
+          <div class="tl pink"><div class="when">월말</div><div class="what">근무일지 최종본 검수</div><div class="how">월 결산 자료. 누락·오류·중복 확인 후 공유 노션 업로드</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>공지 원칙</h2>
+    <div class="grid g2">
+      <div class="card flat"><h3>이유와 함께</h3><p class="mini">팀원 공지는 배경과 이유를 함께 설명. 근무 구조 변경처럼 생활에 닿는 공지는 대면으로 먼저.</p></div>
+      <div class="card flat"><h3>퇴사는 부서 이동으로</h3><p class="mini">담당자 교체 시 업체 톡방에는 "부서 이동으로 새 담당자 초대"로 안내. 진행 중 캠페인·톡방 인수인계는 부재 인수인계 절차에 준함.</p></div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= 8. 인력·교육 ================= -->
+<section class="view" data-view="staff">
+  <div class="hero"><div><h1>인력 · 채용 · 교육</h1></div></div>
+
+  <div class="grid g3">
+    <div class="card stat"><div class="k">정원</div><div class="v">5</div><div class="d">팀장 1 + 매니저 4 (잠정 픽스)</div></div>
+    <div class="card stat"><div class="k">확장 조건</div><div class="v">6</div><div class="d">영업자가 현재 6명에서 1.5~2배로 늘면 매니저 1명 충원</div></div>
+    <div class="card stat"><div class="k">야근 · KPI</div><div class="v">없음 · 550</div><div class="d"><b>4명 체제부터</b> <b>정시 퇴근</b>. 평일 KPI 550, 5명 체제가 정착되면 450으로 하향</div></div>
+  </div>
+
+  <section>
+    <div class="card">
+      <h2>KPI 원칙</h2>
+      <ul>
+        <li>평일 KPI는 지금 1인 <b>550건</b>. 5명 체제(팀장 1 + 매니저 4)가 기본 구조로 정착되면 1인 <b>450건</b>으로 낮춤.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card">
+        <h2>신입 물량 램프업 (예시)</h2>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>기간</th><th>일일 처리 목표</th><th>맡는 캠페인</th><th>확인 포인트</th></tr></thead>
+            <tbody>
+              <tr><td class="k">1주차</td><td>0 (관찰)</td><td>연습 파일, 선배 옆에서 등록 과정 관찰</td><td>등록 전 체크 8항목 암기</td></tr>
+              <tr><td class="k">2주차</td><td>~100건</td><td>링크형 소형 캠페인 1~2개</td><td>영수증 승인 7항목, 반려 사유 입력</td></tr>
+              <tr><td class="k">3~4주차</td><td>~300건</td><td>키워드형 포함 3~5개</td><td>리스트 파일명·열 순서, 재세팅</td></tr>
+              <tr><td class="k">5~8주차</td><td>~KPI 수준</td><td>업체 매핑 배정 시작</td><td>미모집 1차 조치, 사고 보고 양식</td></tr>
+              <tr><td class="k">9주차~</td><td>KPI (550, 5명 체제 정착 후 450)</td><td>정규 배정</td><td>처리량만 단계적으로 올리고, 퇴근 시각은 1주차부터 정시</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">신입에게 물량을 빨리 넘긴 것이 실수의 원인이었던 만큼 단계를 지킴. 수치는 예시이며 팀장이 개인별로 조정. 배우는 기간이라도 야근으로 메우지 않고, 그날 소화하지 못한 물량은 선배 매니저에게 재배분.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid g2">
+      <div class="card">
+        <h3>근태 기준</h3>
+        <ul>
+          <li>근무 시간대는 오전조·주간조·오후 전담 모두 고정. 변경 희망 시 팀장에게 요청, 다음 달 근무표부터 반영</li>
+          <li>교육·회의는 오전조·주간조·오후 전담이 모두 근무하는 <b>14:00~17:00 사이</b>에 진행 (오전조 퇴근 17:00 전)</li>
+          <li><b>4명 체제부터</b> 협력팀 <b>전 직원 야근 금지</b>, <b>정시 퇴근</b>. 매니저는 누구도 예외 없고, 입사 초기도 예외 없음</li>
+          <li>팀장은 <b>팀장 업무에 한해 야근 가능</b></li>
+          <li>4명 체제 전(3명 체제)에는 등록·리스트 송부에 한해 <b>사전 승인 1시간</b>까지 야근 가능</li>
+          <li>연차는 <b>한 달 전</b>에 팀장에게 요청. 부득이한 경우만 2주 전까지, <b>2주 이내 연차 요청은 불가</b>. 반차·반반차는 요청 가능. 공용 시트 기입은 팀장</li>
+          <li>한 명이라도 연차를 쓴 날에는 다른 사람의 <b>연차·반차·반반차 모두 불가</b></li>
+          <li>당일 병가는 출근 후 팀장 확인 뒤 반차·연차 처리. 재택은 불가피한 사유만</li>
+          <li>퇴사는 30일 전 통보, 인수인계는 노션 세부 업무 페이지 기준</li>
+        </ul>
+      </div>
+      <div class="stack">
+      <div class="card">
+        <h3>컨디션 관리</h3>
+        <ul>
+          <li>컨디션 보고: 이름 / 진행 중 캠페인 수 / 사용 중 역량 %. 신규 건 분배 때마다 재확인</li>
+          <li>월 1회 개별 면담. 근무 태도 저하, 반복 실수, 업무량 과다 시 수시</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>인센티브</h3>
+        <ul>
+          <li>평일 KPI 1인 <b>550건</b>, 5명 체제가 정착되면 <b>450건</b>으로 하향. 초과분 건당 100원, 1인 월 상한 20만 원</li>
+          <li>주말 인센티브는 2026.11부 폐지, 앞으로도 계속 폐지. 주말에는 매니저 <b>전원 휴무</b>, 본인 실수 수습만 예외 (당직 도입 시 평일 늦은 출근으로 보상)</li>
+          <li>4명 체제부터 야근수당은 발생하지 않음 (<b>전 직원 야근 금지</b>). 그 전에는 사전 승인받은 야근(1일 1시간 한도)만 인정</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+
+</div>
+
+<script>
+(function(){
+  const VIEWS=[
+    {id:'overview',t:'개요',i:'<path d="M3 12l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>'},
+    {id:'roles',t:'조직·역할',i:'<circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M22 20a7 7 0 0 0-5-6.7"/>'},
+    {id:'daily',t:'하루 운영',i:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'},
+    {id:'weekend',t:'주말 운영',i:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'},
+    {id:'intake',t:'접수·분배',i:'<path d="M4 4h16v12H7l-3 3z"/><path d="M8 9h8M8 12h5"/>'},
+    {id:'ops',t:'운영 기준',i:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>'},
+    {id:'comm',t:'소통·보고',i:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/>'},
+    {id:'staff',t:'인력·교육',i:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'}
+  ];
+  const menu=document.getElementById('menu'), ptitle=document.getElementById('ptitle');
+  VIEWS.forEach(v=>{
+    const b=document.createElement('button'); b.dataset.v=v.id; b.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${v.i}</svg><span>${v.t}</span>`; b.onclick=()=>show(v.id); menu.appendChild(b);
+  });
+  document.getElementById('promoBtn').onclick=()=>{ show('overview'); const w=document.getElementById('why'); if(w) setTimeout(()=>w.scrollIntoView({behavior:'smooth',block:'start'}),50); };
+  function show(id){
+    document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.dataset.view===id));
+    document.querySelectorAll('[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===id));
+    const h=document.querySelector(`.view[data-view="${id}"] h1`); ptitle.textContent=h?h.textContent:'';
+    history.replaceState(null,'','#'+id); window.scrollTo({top:0});
+  }
+  window.addEventListener('hashchange',()=>{const h=location.hash.slice(1); if(VIEWS.some(v=>v.id===h)) show(h);});
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href').slice(1); if(VIEWS.some(v=>v.id===h)){e.preventDefault(); show(h);}}));
+  const init=location.hash.slice(1); show(VIEWS.some(v=>v.id===init)?init:'overview');
+
+
+
+
+  // ---- readability enhancer: split long sentences into lines, highlight times ----
+  function chunksOf(nodes){
+    const out=[[]];
+    nodes.forEach(n=>{
+      if(n.nodeType===3){
+        const parts=n.textContent.split(/(?<=[^\s.]\.)\s+(?=[^\s)])/);
+        parts.forEach((pt,i)=>{ if(i>0) out.push([]); if(pt) out[out.length-1].push(document.createTextNode(pt)); });
+      } else out[out.length-1].push(n);
+    });
+    return out.filter(c=>c.some(n=>n.textContent.trim()));
+  }
+  function mkList(chunks){
+    const ul=document.createElement('ul'); ul.className='sx';
+    chunks.forEach(c=>{ const li=document.createElement('li');
+      if(c[0]&&c[0].nodeType===3) c[0].textContent=c[0].textContent.replace(/^\s+/,'');
+      const last=c[c.length-1]; if(last&&last.nodeType===3) last.textContent=last.textContent.replace(/\s+$/,'');
+      c.forEach(n=>li.appendChild(n));
+      const f=li.firstChild; if(f&&f.nodeType===3){ const m=f.textContent.match(/^([가-힣A-Za-z ·]{1,10}):\s*/); if(m){ const s=document.createElement('span'); s.className='lab'; s.textContent=m[1]+': '; f.textContent=f.textContent.slice(m[0].length); li.insertBefore(s,f);} }
+      ul.appendChild(li); });
+    return ul;
+  }
+  const BLOCK='UL,OL,DIV,P,TABLE,DL,BR,svg,H3';
+  function tidyEl(el){
+    if(el.querySelector(':scope > .sx, :scope > .sx-title')) return;
+    if([...el.children].some(c=>BLOCK.split(',').includes(c.tagName)||BLOCK.split(',').includes(c.nodeName))) return;
+    const txt=el.textContent.trim(); if(txt.length<36) return;
+    let nodes=[...el.childNodes]; let title=null;
+    const firstReal=nodes.find(n=>!(n.nodeType===3&&!n.textContent.trim()));
+    if(firstReal&&firstReal.nodeName==='B'&&/[.:]$/.test(firstReal.textContent.trim())&&(el.matches('.callout,.note'))){
+      title=document.createElement('span'); title.className='sx-title'; title.textContent=firstReal.textContent.trim().replace(/[.:]$/,'');
+      nodes=nodes.slice(nodes.indexOf(firstReal)+1);
+    }
+    let chunks=chunksOf(nodes);
+    if(el.tagName==='TD'){
+      chunks=chunks.flatMap(c=>{ if(c.length!==1||c[0].nodeType!==3) return [c]; const parts=c[0].textContent.trim().split(/\s+·\s+/); return parts.length>=3?parts.map(s=>[document.createTextNode(s)]):[c]; });
+    }
+    if(chunks.length<2 && !title) return;
+    el.textContent='';
+    if(title) el.appendChild(title);
+    if(chunks.length>=2) el.appendChild(mkList(chunks));
+    else { const d=document.createElement('span'); d.className='sx-one'; chunks[0].forEach(n=>d.appendChild(n)); el.appendChild(d); }
+  }
+  const TIME=/(\d{1,2}:\d{2}(?:\s*~\s*\d{1,2}:\d{2})?)|((?<![\d:.])(?:0\d|1\d|2[0-3])~(?:0\d|1\d|2[0-3])(?:시)?(?![\d:건개명주일%원월차회]))/g;
+  const NOTIME='svg,script,style,.pill,th,.seg,.menu,.tile .v,.stat .v,.legend,.tooltip,.tl .when,h1,h2,h3,.ptitle,.date,td.k,.lbl,.tm,.ct,.sq,.steps .t,.lt,.brand,.promo,.sx-title,.what,a,b';
+  function markTimes(root){
+    const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{ const p=n.parentElement; if(!p||p.closest(NOTIME)) return NodeFilter.FILTER_REJECT; TIME.lastIndex=0; return TIME.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT; }});
+    const list=[]; while(w.nextNode()) list.push(w.currentNode);
+    list.forEach(n=>{ const s=n.textContent; const frag=document.createDocumentFragment(); let last=0; TIME.lastIndex=0; let m;
+      while((m=TIME.exec(s))){ if(m.index>last) frag.appendChild(document.createTextNode(s.slice(last,m.index))); const sp=document.createElement('span'); sp.className='tm'; sp.textContent=m[0].replace(/\s*~\s*/,'~'); frag.appendChild(sp); last=m.index+m[0].length; }
+      if(last<s.length) frag.appendChild(document.createTextNode(s.slice(last))); n.replaceWith(frag); });
+  }
+  const TIDY='td:not(.k), dd, .tile .d, .stat .d, .note, .callout, p.mini, .lm, .vs .a, .vs .b, .how, #scenarioDesc';
+  const DOTS='li, td, dd, .lm, .steps .s, .tile .d, .stat .d, p.mini, .how, .sx-one, .note, .callout, #scenarioDesc, .lt, .cs';
+  function lastText(el){ const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT); let last=null; while(w.nextNode()){ if(w.currentNode.textContent.trim()) last=w.currentNode; } return last; }
+  function stripDots(root){
+    const els=[...root.querySelectorAll(DOTS)]; if(root.matches&&root.matches(DOTS)) els.push(root);
+    els.forEach(el=>{ if(el.closest('.callout')&&el.closest('.callout').querySelector(':scope > p')) return; if(el.querySelector('ul,ol,dl')) return;
+      const n=lastText(el); if(n&&(/[가-힣A-Za-z0-9)]\.\s*$/.test(n.textContent)||/^\s*\.\s*$/.test(n.textContent))) n.textContent=n.textContent.replace(/\.\s*$/,''); });
+  }
+  function tidy(root){ if(!root) return; root.querySelectorAll(TIDY).forEach(tidyEl); if(root.matches&&root.matches(TIDY)) tidyEl(root); markTimes(root); stripDots(root); }
+
+  // weekend duty coverage
+  const DUTY={'5':['오전조','주간조','주간조','오후 전담'],'6':['오전조','오전조','주간조','주간조','오후 전담']};
+  const SHIFT={'오전조':['08:00~17:00','늦게 출근'],'주간조':['10:00~19:00','늦게 출근'],'오후 전담':['11:00~20:00','늦게 출근']};
+  function renderDuty(n){
+    document.querySelectorAll('#dutySeg button').forEach(b=>b.classList.toggle('on',b.dataset.d===n));
+    const desc=document.getElementById('dutyDesc'), st=document.getElementById('dutyStats'), tb=document.getElementById('dutyTable'), wrap=document.getElementById('dutyWrap');
+    if(n==='3'||n==='4'){ desc.textContent=(n==='3'?'팀장 1 + 매니저 2 (현재)':'팀장 1 + 매니저 3')+'. 토요일 당직이 없음. 당직은 5명 체제 확정 후 도입 여부를 정함.'; st.innerHTML=''; wrap.innerHTML='<div class="duty-empty">주말에는 매니저 전원 휴무, 본인 실수 건만 본인이 수습. 그 외 급한 사고는 팀장이 비상연락으로 받아 일시정지만 하고, 수정은 월요일 담당 매니저가 함.</div>'; return; }
+    if(!document.getElementById('dutyTable')){ wrap.innerHTML='<table class="duty" id="dutyTable"></table>'; }
+    const T=document.getElementById('dutyTable');
+    const roles=DUTY[n], N=roles.length, W=N+1, L='ABCDE';
+    desc.textContent=`팀장 1 + 매니저 ${N}. 도입할 경우 매니저 ${N}명이 매주 1명씩 돌아가며 토요일 당직을 맡고, 다음 주 평일 화~목 중 하루를 정해 3시간 늦게 출근. 당직 시간은 달마다 C/S가 몰린 시간을 보고 정해 그 달 고정.`;
+    st.innerHTML=[['순번 인원',`매니저 ${N}명`],['1인 당직 빈도',`${N}주에 1회`],['토요일 근무',`1명 · 시간 월별 확정`],['일요일 근무','0명']].map(([k,v])=>`<div class="db"><div class="dk">${k}</div><div class="dv">${v}</div></div>`).join('');
+    let h='<thead><tr><th>매니저</th><th>평일 근무</th>'+Array.from({length:W},(_,w)=>`<th>${w+1}주차</th>`).join('')+'</tr></thead><tbody>';
+    roles.forEach((r,i)=>{ h+=`<tr><td class="k">${L[i]}</td><td>${r} ${SHIFT[r][0]}</td>`;
+      for(let w=0;w<W;w++){ if(w===i) h+='<td><span class="pill pink">토 당직</span></td>'; else if(w===i+1) h+=`<td><span class="pill indigo">${['화','수','목'][i%3]} ${SHIFT[r][1]}</span></td>`; else h+='<td class="off">-</td>'; }
+      h+='</tr>'; });
+    h+='</tbody><tfoot><tr><td>토요일</td><td></td>'+Array.from({length:W},(_,w)=>`<td>${L[w%N]} 1명</td>`).join('')+'</tr></tfoot>';
+    T.innerHTML=h; stripDots(desc);
+  }
+  document.querySelectorAll('#dutySeg button').forEach(b=>b.onclick=()=>renderDuty(b.dataset.d));
+  renderDuty('5');
+
+  // shift chart
+  const tip=document.getElementById('tip');
+  function css(v){return getComputedStyle(root).getPropertyValue(v).trim();}
+  const hm=h=>{const H=Math.floor(h),M=Math.round((h-H)*60);return H+':'+String(M).padStart(2,'0')};
+  const SC={
+    '3':{desc:'팀장 1 + 매니저 2 (현재 수준). 시차 출근 없이 팀장과 매니저 2명 모두 09:30~18:30 근무. 오전조·오후 전담 커버리지는 4명 체제부터 도입하되, 충원 즉시가 아니라 신규 매니저가 인수인계를 마치고 업무에 적응한 뒤부터 시작. 접수 마감은 18:00 하나로 통일하고, 이후 접수는 익일 처리로 영업자에게 공지. 승인·리스트는 모두 각 담당자가 본인 건만 처리하고, 남는 업무는 익일 본인이 처리. 야근은 등록·리스트 송부에 한해 사전 승인 1시간까지이며, 전면 금지는 4명 체제부터 적용.',
+      rows:[
+        {name:'팀장',sub:'관리·분배·결재',s:9.5,e:18.5,lunch:[13,14],c:'--c-lead',n:1,desc:'분배·결재, 미모집 관리, 업무보고 취합, 본인 담당 건 처리'},
+        {name:'매니저 (2명)',sub:'등록·관리 · 09:30~18:30',s:9.5,e:18.5,lunch:[13,14],c:'--c-day',n:2,desc:'본인 캠페인 09:30 승인·10:30까지 리스트, 등록·재세팅·응대, 퇴근 전 본인 건 저녁 승인·당일 리스트'}
+      ]},
+    '4':{desc:'팀장 1 + 매니저 3. 커버리지 근무는 신규 1명 충원 즉시가 아니라 신규 매니저가 인수인계를 마치고 업무에 적응한 뒤부터 시작. 오전조 1명(08~17), 주간조 1명과 팀장(10~19), 오후 전담 1명(11:00~20:00). 오후 전담이 생기는 이 단계부터 접수 마감을 17:30 1차·19:00 2차로 나눔. 17:30~19:00 접수는 오후 전담이 받고, 08시부터 20:00까지 끊김 없이 최소 1명이 근무.',
+      rows:[
+        {name:'팀장',sub:'관리·분배·결재',s:10,e:19,lunch:[13,14],c:'--c-lead',n:1,desc:'분배·결재, 미모집 관리, 업무보고 취합'},
+        {name:'오전조 (1명)',sub:'아침 리스트 캠페인',s:8,e:17,lunch:[13,14],c:'--c-am',n:1,desc:'08~10시 본인 담당 캠페인 전일 영수증 승인, 10시 정각 리스트, 이후 담당 건 등록·관리'},
+        {name:'주간조 (1명)',sub:'등록·관리 · 고정',s:10,e:19,lunch:[13,14],c:'--c-day',n:1,desc:'본인 캠페인 10시 승인·10:30까지 리스트, 등록·재세팅·응대, 퇴근 전 본인 건 저녁 승인·당일 리스트'},
+        {name:'오후 전담 (1명)',sub:'저녁 업체·마감 후 등록',s:11,e:20,lunch:[13,14],c:'--c-pm',n:1,desc:'저녁 진행 업체 담당. 17:30~19:00 접수분 등록(기존 업체 건은 일시정지로 두고 익일 담당자 라이브), 19:00~20:00 본인 건 저녁 승인'}
+      ]},
+    '5':{desc:'팀장 1 + 매니저 4 (잠정 픽스). 접수 마감은 4명 체제와 같은 17:30 1차·19:00 2차. 5명 중 3명(주간조 2명과 팀장)이 다른 부서와 같은 10~19시로 근무하고, 오전조 1명만 08~17시, 오후 전담 1명만 11:00~20:00. 08시부터 20:00까지 끊김 없이 최소 1명, 낮에는 5명이 근무.',
+      rows:[
+        {name:'팀장',sub:'관리·분배·결재',s:10,e:19,lunch:[13,14],c:'--c-lead',n:1,desc:'분배·결재, 미모집 관리, 업무보고 취합, 당일 리스트 누락 점검'},
+        {name:'오전조 (1명)',sub:'아침 리스트 캠페인',s:8,e:17,lunch:[13,14],c:'--c-am',n:1,desc:'08~10시 본인 담당 캠페인 전일 영수증 승인, 10시 정각 리스트, 이후 담당 건 등록·관리'},
+        {name:'주간조 (2명)',sub:'등록·관리 · 고정',s:10,e:19,lunch:[13,14],c:'--c-day',n:2,desc:'본인 캠페인 10시 승인·10:30까지 리스트, 등록·재세팅·응대, 퇴근 전 본인 건 저녁 승인·당일 리스트'},
+        {name:'오후 전담 (1명)',sub:'저녁 업체·마감 후 등록',s:11,e:20,lunch:[13,14],c:'--c-pm',n:1,desc:'저녁 진행 업체 담당. 17:30~19:00 접수분 등록(기존 업체 건은 일시정지로 두고 익일 담당자 라이브), 19:00~20:00 본인 건 저녁 승인'}
+      ]},
+    '6':{desc:'팀장 1 + 매니저 5 (확장, 영업자가 현재 6명에서 1.5~2배로 늘어난 시점). 5명 체제에 오전조 1명을 더해, 아침 리스트가 빠른 캠페인을 오전조 2명이 각자 담당. 접수 마감은 4명 체제부터와 같은 17:30 1차·19:00 2차. 08~10시 2명, 낮에는 6명, 17~19시 4명, 19:00~20:00 1명이 근무.',
+      rows:[
+        {name:'팀장',sub:'관리·분배·결재',s:10,e:19,lunch:[13,14],c:'--c-lead',n:1,desc:'분배·결재, 미모집 관리, 업무보고 취합, 당일 리스트 누락 점검'},
+        {name:'오전조 (2명)',sub:'아침 리스트 캠페인',s:8,e:17,lunch:[13,14],c:'--c-am',n:2,desc:'각자 본인 담당 캠페인 08~10시 승인, 10시 정각 리스트, 이후 담당 건 등록·관리'},
+        {name:'주간조 (2명)',sub:'등록·관리 · 고정',s:10,e:19,lunch:[13,14],c:'--c-day',n:2,desc:'본인 캠페인 10시 승인·10:30까지 리스트, 등록·재세팅·응대, 퇴근 전 본인 건 저녁 승인·당일 리스트'},
+        {name:'오후 전담 (1명)',sub:'저녁 업체·마감 후 등록',s:11,e:20,lunch:[13,14],c:'--c-pm',n:1,desc:'저녁 진행 업체 담당. 17:30~19:00 접수분 등록(기존 업체 건은 일시정지로 두고 익일 담당자 라이브), 19:00~20:00 본인 건 저녁 승인'}
+      ]}
+  };
+
+  const LUNCH=['13:00~14:00','전원','점심. 조별 시차 없이 모두 같은 시간','이 시간에는 아무도 근무하지 않으므로 점심시간 리스트·접수 요구는 헤더가 커트하고, 13시 전 요청은 12:30까지 처리'];
+  const R08=(who)=>['08:00','오전조 ('+who+')','본인이 담당하는 캠페인(아침 리스트가 빨리 나가야 하는 건)의 전일 저녁·야간 진행분 영수증 승인, 반려 사유 입력, 주문번호 오류 정리','10:00 정각 리스트 송부 전 승인 완료. 다른 매니저 캠페인은 승인하지 않음. 월요일은 금요일 오후·주말 진행분 포함'];
+  const R10=(extra)=>['10:00','전 담당자 · 팀장','오전조는 본인 캠페인 리스트 10시 정각 송부. 주간조·팀장은 출근 후 본인 캠페인 전일분 승인 → 리스트 송부 (업체별 파일명·열 순서 규칙 준수). 팀장은 밤사이 접수·톡방 확인 후 분배·결재','10:30까지 송부 완료. 10:30을 자주 넘기는 캠페인은 오전조 매핑으로 옮김. '+extra+'10:30 전 전일 접수 건 분배 완료'];
+  const R17=(to)=>['17:00','오전조','본인 건 저녁 진행분 승인, 당일 리스트 송부, 개인 업무보고 업로드 후 퇴근','리스트는 퇴근 직전까지 송부. 잔여 업무는 익일 본인이 처리'];
+  const DAILY={
+    '3':{label:'3명 체제 (팀장 1 + 매니저 2, 현재) · 접수 마감 18:00 단일',rows:[
+      ['09:30','팀장 · 매니저 2명','전원 출근. 각자 본인 캠페인 전일분 승인 → 리스트 송부 (업체별 파일명·열 순서 규칙 준수). 팀장은 밤사이 접수·톡방 확인 후 분배·결재','10:30까지 송부 완료. 10:30 전 전일 접수 건 분배 완료. 월요일은 금요일 오후·주말 진행분 포함'],
+      ['10:30~18:00','전원','캠페인 등록·검수·라이브, 재세팅, 리뷰 A/S, 업체·리뷰어 응대, 미모집 1차 조치','등록은 일시정지 상태로 올린 뒤 검수 후 라이브'],
+      LUNCH,
+      ['18:00','전원','접수 마감 (단일). 18:00까지 접수된 건은 당일 등록','18시 이후 접수는 익일 접수로 톡방 안내. 예외는 팀장 승인 건만, 하루 1~2건'],
+      ['18:00~18:30','전원','본인 건 마감분 등록 마무리, 광고주 URL 당일분 추가, 퇴근 전 본인 건 저녁 진행분 승인','끝내지 못한 등록은 익일 본인이 처리하고 영업자에게 익일 진행 안내'],
+      ['18:30','전원','팀장: 업무보고 취합, 작업일보, 업체 톡방 금일 마감 노티, 리스트 누락 점검. 매니저: 담당 건 당일 리스트 송부, 개인 업무보고 후 퇴근','전원 업무보고 후 18:30 정시 퇴근. 18:30 이후 진행분 승인은 익일 그 캠페인 담당자']
+    ]},
+    '4':{label:'4명 체제 (팀장 1 + 매니저 3) · 접수 17:30 1차, 19:00 2차 마감',rows:[
+      R08('고정'),R10('오후 전담 담당 건은 11:00 출근 후 11:30까지(업체 사전 합의). '),
+      ['11:00','오후 전담','출근. 본인 캠페인 전일분 승인 → 리스트 송부 후 등록·관리. 저녁 진행이 잦은 업체와 17:30 이후 접수분 등록을 맡음','11:30까지 송부. 오전 리스트가 필요한 캠페인은 오후 전담에게 매핑하지 않음'],
+      ['11:00~17:30','전원','캠페인 등록·검수·라이브, 재세팅, 리뷰 A/S, 업체·리뷰어 응대, 미모집 1차 조치','등록은 일시정지 상태로 올린 뒤 검수 후 라이브'],
+      LUNCH,R17('주간조·오후 전담'),
+      ['17:30','주간조 · 팀장 · 오후 전담','접수 1차 마감. 17:30까지 접수된 건은 당일 등록','17:30 이후 접수는 오후 전담이 받음. 주간조가 못 끝낸 본인 건은 익일 본인이 처리'],
+      ['17:30~19:00','오후 전담','1차 마감 후 접수분 등록(익일 진행 기준). 신규 업체 건은 본인 담당으로 라이브, 기존 담당자가 있는 업체 건은 일시정지로 등록만 하고 익일 담당 매니저가 검수·라이브.','19:00 접수 2차 마감. 이후 접수는 익일 접수로 톡방 안내'],
+      ['19:00','주간조 · 팀장','팀장: 업무보고 취합, 작업일보, 광고주 URL 당일분·마감 후 접수분 추가, 업체 톡방 금일 마감 노티, 리스트 누락 점검. 주간조: 담당 건 당일 리스트 송부, 개인 업무보고 후 퇴근','주간조·팀장 업무보고 후 정시 퇴근, 잔여 업무는 익일 본인'],
+      ['19:00~20:00','오후 전담','2차 마감분 등록 마무리, 본인 건 저녁 진행분 승인·당일 리스트 송부, 본인 건 자동구매 오류 1차 분류, 일시정지 등록 건 목록을 담당자별로 톡방 공유','20:00 개인 업무보고 후 퇴근. 다른 매니저 캠페인은 승인·수정하지 않음. 이후 진행분은 익일 담당자 승인']
+    ]},
+    '5':{label:'5명 체제 (팀장 1 + 매니저 4, 최종) · 접수 17:30 1차, 19:00 2차 마감',rows:[
+      R08('고정'),R10('오후 전담 담당 건은 11:00 출근 후 11:30까지(업체 사전 합의). '),
+      ['11:00','오후 전담','출근. 본인 캠페인 전일분 승인 → 리스트 송부 후 등록·관리. 저녁 진행이 잦은 업체와 17:30 이후 접수분 등록을 맡음','11:30까지 송부. 오전 리스트가 필요한 캠페인은 오후 전담에게 매핑하지 않음'],
+      ['11:00~17:30','전원','캠페인 등록·검수·라이브, 재세팅, 리뷰 A/S, 업체·리뷰어 응대, 미모집 1차 조치','등록은 일시정지 상태로 올린 뒤 검수 후 라이브'],
+      LUNCH,R17('주간조·오후 전담'),
+      ['17:30','주간조 · 팀장 · 오후 전담','접수 1차 마감. 17:30까지 접수된 건은 당일 등록','17:30 이후 접수는 오후 전담이 받음. 주간조가 못 끝낸 본인 건은 익일 본인이 처리'],
+      ['17:30~19:00','오후 전담','1차 마감 후 접수분 등록(익일 진행 기준). 신규 업체 건은 본인 담당으로 라이브, 기존 담당자가 있는 업체 건은 일시정지로 등록만 하고 익일 담당 매니저가 검수·라이브.','19:00 접수 2차 마감. 이후 접수는 익일 접수로 톡방 안내'],
+      ['19:00','주간조 · 팀장','팀장: 업무보고 취합, 작업일보, 광고주 URL 당일분·마감 후 접수분 추가, 업체 톡방 금일 마감 노티, 리스트 누락 점검. 주간조: 담당 건 당일 리스트 송부, 개인 업무보고 후 퇴근','주간조·팀장 업무보고 후 정시 퇴근, 잔여 업무는 익일 본인'],
+      ['19:00~20:00','오후 전담','2차 마감분 등록 마무리, 본인 건 저녁 진행분 승인·당일 리스트 송부, 본인 건 자동구매 오류 1차 분류, 일시정지 등록 건 목록을 담당자별로 톡방 공유','20:00 개인 업무보고 후 퇴근. 다른 매니저 캠페인은 승인·수정하지 않음. 이후 진행분은 익일 담당자 승인']
+    ]},
+    '6':{label:'6명 체제 (팀장 1 + 매니저 5, 확장) · 접수 17:30 1차, 19:00 2차 마감',rows:[
+      R08('2명 · 고정, 각자 담당'),
+      R10('오후 전담 담당 건은 11:00 출근 후 11:30까지(업체 사전 합의). '),
+      ['11:00','오후 전담','출근. 본인 캠페인 전일분 승인 → 리스트 송부 후 등록·관리. 저녁 진행이 잦은 업체와 17:30 이후 접수분 등록을 맡음','11:30까지 송부. 오전 리스트가 필요한 캠페인은 오후 전담에게 매핑하지 않음'],
+      ['11:00~17:30','전원','캠페인 등록·검수·라이브, 재세팅, 리뷰 A/S, 업체·리뷰어 응대, 미모집 1차 조치','등록은 일시정지 상태로 올린 뒤 검수 후 라이브'],
+      LUNCH,R17('주간조·오후 전담').map((v,i)=>i===1?'오전조 (2명, 각자)':v),
+      ['17:30','주간조 · 팀장 · 오후 전담','접수 1차 마감. 17:30까지 접수된 건은 당일 등록','17:30 이후 접수는 오후 전담이 받음. 주간조가 못 끝낸 본인 건은 익일 본인이 처리'],
+      ['17:30~19:00','오후 전담','1차 마감 후 접수분 등록(익일 진행 기준). 신규 업체 건은 본인 담당으로 라이브, 기존 담당자가 있는 업체 건은 일시정지로 등록만 하고 익일 담당 매니저가 검수·라이브.','19:00 접수 2차 마감. 이후 접수는 익일 접수로 톡방 안내'],
+      ['19:00','주간조 · 팀장','팀장: 업무보고 취합, 작업일보, 광고주 URL 당일분·마감 후 접수분 추가, 업체 톡방 금일 마감 노티, 리스트 누락 점검. 주간조: 담당 건 당일 리스트 송부, 개인 업무보고 후 퇴근','주간조·팀장 업무보고 후 정시 퇴근, 잔여 업무는 익일 본인'],
+      ['19:00~20:00','오후 전담','2차 마감분 등록 마무리, 본인 건 저녁 진행분 승인·당일 리스트 송부, 본인 건 자동구매 오류 1차 분류, 일시정지 등록 건 목록을 담당자별로 톡방 공유','20:00 개인 업무보고 후 퇴근. 다른 매니저 캠페인은 승인·수정하지 않음. 이후 진행분은 익일 담당자 승인']
+    ]}
+  };
+  function renderDaily(){ const d=DAILY[scenario]; const el=document.getElementById('dailyRows'); if(!el) return; const mins=s=>{const m=String(s).match(/(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:0;}; el.innerHTML=d.rows.map((r,i)=>[r,i]).sort((a,b)=>mins(a[0][0])-mins(b[0][0])||a[1]-b[1]).map(x=>x[0]).map(r=>`<tr><td class="k">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join(''); document.getElementById('dailyRegime').textContent=d.label; tidy(el); }
+  let scenario='5';
+  document.querySelectorAll('#scenarioSeg button, #dailySeg button').forEach(b=>b.onclick=()=>{scenario=b.dataset.sc; document.querySelectorAll('#scenarioSeg button, #dailySeg button').forEach(x=>x.classList.toggle('on',x.dataset.sc===scenario)); drawChart(); renderDaily();});
+  function drawChart(){
+    const svg=document.getElementById('shiftChart'); if(!svg) return;
+    const sc=SC[scenario]; const rows=sc.rows.map(r=>Object.assign({},r,{c:css(r.c)}));
+    document.getElementById('scenarioDesc').textContent=sc.desc; tidy(document.getElementById('scenarioDesc'));
+    document.getElementById('chartLegend').innerHTML=rows.map(r=>`<span><i style="background:${r.c}"></i>${r.name} ${hm(r.s)}~${hm(r.e)}</span>`).join('')+`<span><i style="background:${css('--line-2')}"></i>점심 13~14시 (전원 동일)</span>`;
+    const W=1000,L=150,R=24,T=42,B=60; const x0=8,x1=20; const sx=h=>L+(h-x0)/(x1-x0)*(W-L-R);
+    const rowH=50, barH=26; const H=T+12+rows.length*rowH+6+40+B-20; svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const text=css('--text'), muted=css('--muted'), line=css('--line'), pink=css('--pink'), card=css('--card');
+    let s='';
+    for(let h=x0;h<=x1;h++){ s+=`<line x1="${sx(h)}" y1="${T}" x2="${sx(h)}" y2="${H-B+6}" stroke="${line}" stroke-width="1"/>`; s+=`<text x="${sx(h)}" y="${H-B+22}" font-size="12" fill="${muted}" text-anchor="middle">${h}:00</text>`; }
+    rows.forEach((r,i)=>{ const y=T+12+i*rowH;
+      s+=`<text x="${L-12}" y="${y+barH/2-2}" font-size="13.5" font-weight="700" fill="${text}" text-anchor="end">${r.name}</text>`;
+      s+=`<text x="${L-12}" y="${y+barH/2+12}" font-size="11.5" fill="${muted}" text-anchor="end">${r.sub}</text>`;
+      s+=`<rect class="bar-seg" data-d="${r.name} ${hm(r.s)}~${hm(r.e)} · ${r.desc}" x="${sx(r.s)}" y="${y}" width="${sx(r.e)-sx(r.s)}" height="${barH}" rx="6" fill="${r.c}"/>`;
+      s+=`<rect class="bar-seg" data-d="${r.name} 점심 ${r.lunch[0]}:00~${r.lunch[1]}:00" x="${sx(r.lunch[0])+1}" y="${y+1}" width="${sx(r.lunch[1])-sx(r.lunch[0])-2}" height="${barH-2}" rx="5" fill="${card}" opacity=".75"/>`;
+      s+=`<text x="${sx(r.s)+10}" y="${y+barH/2+4}" font-size="12" font-weight="700" fill="#fff" style="pointer-events:none">${hm(r.s)}~${hm(r.e)}</text>`;
+    });
+    const cy=T+12+rows.length*rowH+6; s+=`<text x="${L-12}" y="${cy+14}" font-size="13.5" font-weight="700" fill="${text}" text-anchor="end">동시 근무 인원</text>`;
+    const cnt=m=>{let n=0; rows.forEach(r=>{ if(m>=r.s&&m<r.e&&!(m>=r.lunch[0]&&m<r.lunch[1])) n+=r.n; }); return n;};
+    for(let h=x0;h<x1;h+=0.5){ const n=cnt(h+0.25); const nl=Math.max(n,cnt(h+0.75));
+      const w=sx(h+0.5)-sx(h)-2; const hh=Math.max(4,n*4.5); const col=n===0?pink:css('--indigo'); s+=`<rect class="bar-seg" data-d="${hm(h)}~${hm(h+0.5)} · ${n}명 근무" x="${sx(h)+1}" y="${cy+22-hh}" width="${w}" height="${hh}" rx="3" fill="${col}" opacity="${n===0?0.6:0.35+n*0.13}"/>`; s+=`${Number.isInteger(h)?`<text x="${sx(h)+(sx(h+1)-sx(h))/2}" y="${cy+34}" font-size="11.5" fill="${nl===0?pink:muted}" font-weight="${nl===0?700:400}" text-anchor="middle">${nl}</text>`:''}`; }
+    const MK=+scenario>=4?[[17.5,'17:30 접수 1차 마감','end',-4,1],[19,'19:00 접수 2차 마감','end',-4,0],[20,'20:00 오후 전담 퇴근','end',-4,1]]:[[18,'18:00 접수 마감','end',-4,1],[18.5,'18:30 전원 퇴근','start',4,0]];
+    { const bx=sx(10), bw=sx(10.5)-sx(10); s+=`<rect class="bar-seg" data-d="10:00~10:30 · 전일 리스트 송부 (담당자별, 10:30까지 완료)" x="${bx}" y="${T-6}" width="${bw}" height="${H-B+12-T}" fill="${pink}" opacity=".1"/>`; [10,10.5].forEach(h=>{ s+=`<line x1="${sx(h)}" y1="${T-7}" x2="${sx(h)}" y2="${H-B+6}" stroke="${pink}" stroke-width="1.5" stroke-dasharray="4 3" style="pointer-events:none"/>`; }); s+=`<text x="${bx-4}" y="${T-10}" font-size="12" font-weight="700" fill="${pink}" text-anchor="end">10:00~10:30 전일 리스트 송부</text>`; }
+    MK.forEach(([h,l,a,dx,lv])=>{ const ty=lv?T-24:T-10; s+=`<line x1="${sx(h)}" y1="${ty+3}" x2="${sx(h)}" y2="${H-B+6}" stroke="${pink}" stroke-width="1.5" stroke-dasharray="4 3"/>`; s+=`<text x="${sx(h)+dx}" y="${ty}" font-size="12" font-weight="700" fill="${pink}" text-anchor="${a}">${l}</text>`; });
+    svg.innerHTML=s;
+    svg.querySelectorAll('.bar-seg').forEach(el=>{ el.addEventListener('mousemove',e=>{tip.textContent=el.dataset.d; tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY+12)+'px'; tip.style.opacity=1;}); el.addEventListener('mouseleave',()=>tip.style.opacity=0); });
+  }
+  // theme
+  const KEY='g2g-coop-theme'; const root=document.documentElement;
+  function applyTheme(t){ root.setAttribute('data-theme',t); document.getElementById('iconMoon').style.display=t==='dark'?'none':''; document.getElementById('iconSun').style.display=t==='dark'?'':'none'; try{localStorage.setItem(KEY,t)}catch(e){} drawChart(); }
+  let saved=null; try{saved=localStorage.getItem(KEY)}catch(e){}
+  applyTheme(saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  document.getElementById('themeBtn').onclick=()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
+  drawChart(); renderDaily();
+  tidy(document.querySelector('.content'));
+})();
+</script>
+</body>
+</html>
